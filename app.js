@@ -20,16 +20,14 @@ window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scr
 
 /* ─── TICKER ─────────────────────── */
 const tickerData=[
-  {label:'OC komunikacyjne',val:'+2.3%',cls:'green'},
-  {label:'Ubezpieczenia życia',val:'stabilne',cls:'blue'},
-  {label:'Składki firmowe',val:'-1.8%',cls:'red'},
-  {label:'Rynek Cyber PL',val:'+14.6%',cls:'green'},
-  {label:'Wypłaty odszkodowań',val:'24h avg',cls:'blue'},
-  {label:'D&O Directors',val:'+5.1%',cls:'green'},
-  {label:'Ubezpieczenia majątkowe',val:'stabilne',cls:'blue'},
-  {label:'Gwarancje przetargowe',val:'+3.9%',cls:'green'},
-  {label:'OC zawodowe',val:'+7.2%',cls:'red'},
-  {label:'Pakiety medyczne',val:'+11.4%',cls:'green'},
+  {label:'OC komunikacyjne',cls:'green'},
+  {label:'Ubezpieczenia życia',cls:'blue'},
+  {label:'Cyber',cls:'green'},
+  {label:'D&O Directors',cls:'green'},
+  {label:'Ubezpieczenia majątkowe',cls:'blue'},
+  {label:'Gwarancje przetargowe',cls:'green'},
+  {label:'OC zawodowe',cls:'blue'},
+  {label:'Pakiety medyczne',cls:'green'},
 ];
 function buildTicker(){
   const wrap=document.getElementById('tickerInner');
@@ -38,7 +36,6 @@ function buildTicker(){
     <div class="ticker-item ${d.cls}">
       <span class="dot"></span>
       <span>${d.label}</span>
-      <span class="val">${d.val}</span>
     </div>
   `).join('');
 }
