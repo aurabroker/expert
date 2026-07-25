@@ -17,6 +17,7 @@
 		name: site.name,
 		description: site.description,
 		url: site.url,
+		logo: `${site.url}/logo.png`,
 		email: site.email,
 		telephone: site.phone,
 		areaServed: 'PL',

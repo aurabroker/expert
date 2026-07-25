@@ -25,6 +25,9 @@ export const hero = {
 	title: 'Specjalistyczne rozwiązania ubezpieczeniowe dla firm',
 	subtitle:
 		'Ochrona Państwa dyrektorów, danych i finansów przed współczesnymi zagrożeniami — projektowana przez ekspertów, nie sprzedawana z katalogu.',
+	// Zdjęcie hero wygenerowane w Bloom (on-brand), zoptymalizowane do WebP/JPEG.
+	// Źródło: assets/source/man02.png. Podmiana: nadpisz static/images/hero.{webp,jpg}.
+	image: '/images/hero.jpg',
 	primaryCta: { label: 'Poproś o konsultację', href: '/#kontakt' },
 	secondaryCta: { label: 'Nasze usługi', href: '/#uslugi' },
 	stats: [

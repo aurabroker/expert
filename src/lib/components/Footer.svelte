@@ -29,7 +29,9 @@
 	<div class="container-x">
 		<div class="footer__top">
 			<div class="max-w-sm">
-				<Logo light />
+				<span class="inline-flex rounded-xl bg-white px-4 py-3 shadow-sm">
+					<Logo class="h-12" />
+				</span>
 				<p class="mt-5 text-sm leading-relaxed text-slate-400">
 					{site.tagline.charAt(0).toUpperCase() + site.tagline.slice(1)}. Specjalistyczne
 					ubezpieczenia dla firm — D&O, Cyber i ochrona podatkowa.

@@ -1,10 +1,12 @@
 <script>
 	import Icon from './Icon.svelte';
+	import Facets from './Facets.svelte';
 	import { hero } from '$data/content.js';
 </script>
 
 <section id="top" class="hero">
 	<div class="hero__bg" aria-hidden="true"></div>
+	<div class="hero__facets" aria-hidden="true"><Facets tone="blue" /></div>
 	<div class="container-x relative grid items-center gap-12 pt-32 pb-16 md:pt-40 md:pb-24 lg:grid-cols-[1.05fr_0.95fr]">
 		<div class="max-w-xl">
 			<p class="eyebrow reveal">
@@ -37,14 +39,19 @@
 
 		<div class="hero__visual reveal" style="transition-delay:200ms">
 			<div class="hero__frame">
-				<img
-					src="/images/hero.jpg"
-					alt="Doradca ubezpieczeniowy Aura Expert w nowoczesnym biurze"
-					width="720"
-					height="880"
-					loading="eager"
-					fetchpriority="high"
-				/>
+				<div class="hero__frame-fallback"><Facets tone="cyan" /></div>
+				<picture>
+					<source srcset="/images/hero.webp" type="image/webp" />
+					<img
+						src={hero.image}
+						alt="Doradca ubezpieczeniowy Aura Expert w nowoczesnym biurze"
+						width="1100"
+						height="1380"
+						loading="eager"
+						fetchpriority="high"
+						onerror={(e) => (e.currentTarget.style.display = 'none')}
+					/>
+				</picture>
 			</div>
 
 			<div class="hero__badge hero__badge--top">
@@ -81,6 +88,23 @@
 			radial-gradient(50% 50% at 8% 30%, rgba(28, 157, 215, 0.08), transparent 70%),
 			linear-gradient(180deg, #f4f9fc 0%, #ffffff 60%);
 	}
+	.hero__facets {
+		position: absolute;
+		top: -70px;
+		right: -80px;
+		width: 480px;
+		max-width: 55vw;
+		opacity: 0.5;
+		filter: drop-shadow(0 20px 40px rgba(28, 157, 215, 0.15));
+		z-index: 0;
+	}
+	@media (max-width: 1024px) {
+		.hero__facets {
+			opacity: 0.28;
+			top: -50px;
+			right: -110px;
+		}
+	}
 	.hero__bg::after {
 		content: '';
 		position: absolute;
@@ -94,23 +118,44 @@
 	.hero__visual {
 		position: relative;
 		margin-inline: auto;
+		width: 100%;
 		max-width: 460px;
 	}
 	.hero__frame {
 		position: relative;
+		width: 100%;
 		border-radius: 26px;
 		overflow: hidden;
 		box-shadow: 0 40px 80px -40px rgba(15, 36, 56, 0.55);
 		background: linear-gradient(135deg, #1e3a4c, #0f2438);
 		aspect-ratio: 4 / 5;
 	}
+	.hero__frame picture {
+		position: relative;
+		z-index: 1;
+		display: block;
+		height: 100%;
+		width: 100%;
+	}
 	.hero__frame img {
+		display: block;
 		height: 100%;
 		width: 100%;
 		object-fit: cover;
 	}
+	.hero__frame-fallback {
+		position: absolute;
+		inset: 0;
+		display: grid;
+		place-items: center;
+		opacity: 0.45;
+	}
+	.hero__frame-fallback :global(.facets) {
+		width: 62%;
+	}
 	.hero__badge {
 		position: absolute;
+		z-index: 2;
 		display: flex;
 		align-items: center;
 		gap: 0.65rem;

@@ -1,10 +1,12 @@
 <script>
 	import Icon from './Icon.svelte';
+	import Facets from './Facets.svelte';
 	import { benefits } from '$data/content.js';
 </script>
 
 <section id="dlaczego" class="section bg-navy relative overflow-hidden">
 	<div class="benefits__glow" aria-hidden="true"></div>
+	<div class="benefits__facets" aria-hidden="true"><Facets tone="cyan" /></div>
 	<div class="container-x relative">
 		<div class="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr]">
 			<div class="reveal lg:sticky lg:top-28">
@@ -47,6 +49,21 @@
 		transform: translateX(-50%);
 		background: radial-gradient(circle, rgba(28, 157, 215, 0.16), transparent 60%);
 		pointer-events: none;
+	}
+	.benefits__facets {
+		position: absolute;
+		bottom: -90px;
+		left: -70px;
+		width: 320px;
+		opacity: 0.16;
+		transform: rotate(12deg);
+		pointer-events: none;
+	}
+	@media (max-width: 768px) {
+		.benefits__facets {
+			width: 200px;
+			opacity: 0.12;
+		}
 	}
 	.benefit-card {
 		border-radius: 20px;

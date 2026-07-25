@@ -18,7 +18,7 @@
 <header class="header" class:header--scrolled={scrolled} class:header--open={open}>
 	<div class="container-x flex h-[var(--nav-h)] items-center justify-between gap-6">
 		<a href="/#top" class="shrink-0" aria-label="Aura Expert — strona główna" onclick={() => (open = false)}>
-			<Logo />
+			<Logo class="h-9 sm:h-10" />
 		</a>
 
 		<nav class="hidden items-center gap-8 lg:flex" aria-label="Główna nawigacja">
@@ -32,7 +32,7 @@
 		</div>
 
 		<button
-			class="menu-toggle lg:hidden"
+			class="menu-toggle inline-flex items-center justify-center lg:hidden"
 			aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
 			aria-expanded={open}
 			onclick={() => (open = !open)}
@@ -109,9 +109,6 @@
 		width: 100%;
 	}
 	.menu-toggle {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
 		height: 44px;
 		width: 44px;
 		border-radius: 12px;
