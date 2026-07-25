@@ -74,6 +74,22 @@ export const services = [
 		cta: 'Dowiedz się więcej'
 	},
 	{
+		id: 'oc-zawodowe',
+		tag: 'OC zawodowe',
+		title: 'Odpowiedzialność cywilna zawodowa',
+		subtitle: 'Ochrona wykonujących zawód',
+		icon: 'briefcase',
+		description:
+			'Ochrona przed roszczeniami za szkody wyrządzone przy wykonywaniu zawodu — dla profesjonalistów, firm usługowych i zawodów zaufania publicznego.',
+		points: [
+			'Szkody wyrządzone klientom przy wykonywaniu zawodu',
+			'Błędy, zaniedbania i uchybienia zawodowe',
+			'Koszty obrony prawnej i postępowań',
+			'OC obowiązkowe oraz nadwyżkowe'
+		],
+		cta: 'Dowiedz się więcej'
+	},
+	{
 		id: 'cyber',
 		tag: 'Cyber',
 		title: 'Ubezpieczenie Cyber',
@@ -118,6 +134,22 @@ export const services = [
 			'Ubezpieczenie sprzętu i wyposażenia',
 			'Ochrona lokalu i następstw zdarzeń',
 			'Zabiegi kosmetyczne, tatuaż, SPA i barber'
+		],
+		cta: 'Dowiedz się więcej'
+	},
+	{
+		id: 'grupowe',
+		tag: 'Grupowe',
+		title: 'Ubezpieczenia grupowe',
+		subtitle: 'Ochrona zespołu i pracowników',
+		icon: 'people',
+		description:
+			'Grupowe ubezpieczenia na życie i zdrowie dla pracowników — atrakcyjny benefit, który wzmacnia lojalność i bezpieczeństwo zespołu.',
+		points: [
+			'Grupowe ubezpieczenie na życie',
+			'Pakiety zdrowotne i medyczne',
+			'Ochrona na wypadek choroby i NNW',
+			'Korzystne warunki dla całego zespołu'
 		],
 		cta: 'Dowiedz się więcej'
 	}

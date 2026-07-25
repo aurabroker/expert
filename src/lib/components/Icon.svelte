@@ -27,6 +27,11 @@
 	{:else if name === 'sparkle'}
 		<path d="M12 3l1.9 5L19 9.9l-5 1.9L12 17l-1.9-5.1L5 9.9l5.1-1.9z" />
 		<path d="M18.5 14l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" />
+	{:else if name === 'briefcase'}
+		<rect x="3" y="7" width="18" height="13" rx="2" />
+		<path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+		<path d="M3 12.5h18" />
+		<path d="M12 12v1.5" />
 	{:else if name === 'medal'}
 		<circle cx="12" cy="9" r="6" />
 		<path d="M8.2 13.5L7 22l5-3 5 3-1.2-8.5" />

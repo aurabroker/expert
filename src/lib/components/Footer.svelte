@@ -9,9 +9,11 @@
 			title: 'Ubezpieczenia',
 			links: [
 				{ label: 'Ubezpieczenie D&O', href: '/#uslugi' },
+				{ label: 'OC zawodowe', href: '/#uslugi' },
 				{ label: 'Ubezpieczenie Cyber', href: '/#uslugi' },
 				{ label: 'Ochrona Podatkowa', href: '/#uslugi' },
 				{ label: 'BeautyPolisa', href: '/#uslugi' },
+				{ label: 'Ubezpieczenia grupowe', href: '/#uslugi' },
 				{ label: 'Referencje', href: '/#referencje' }
 			]
 		},

@@ -14,7 +14,7 @@
 			</p>
 		</div>
 
-		<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+		<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 			{#each services as service, i}
 				<article class="service-card reveal" style="transition-delay:{i * 100}ms">
 					<div class="service-card__icon">
