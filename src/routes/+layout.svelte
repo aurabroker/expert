@@ -6,11 +6,13 @@
 	let { children } = $props();
 
 	function initRevealAnimations() {
-		const els = document.querySelectorAll('.reveal');
+		const els = Array.from(document.querySelectorAll('.reveal'));
 		if (!('IntersectionObserver' in window)) {
-			els.forEach((el) => el.classList.add('is-visible'));
+			// Brak wsparcia — treść zostaje widoczna (bez animacji).
 			return () => {};
 		}
+		// Włączamy animacje dopiero teraz; jeśli skrypt się nie wykona, treść pozostaje widoczna.
+		document.documentElement.classList.add('js-reveal');
 		const io = new IntersectionObserver(
 			(entries) => {
 				for (const entry of entries) {
@@ -22,7 +24,15 @@
 			},
 			{ threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
 		);
-		els.forEach((el) => io.observe(el));
+		const vh = window.innerHeight || 800;
+		for (const el of els) {
+			// Elementy już w widoku pokazujemy natychmiast (bez migotania), resztę obserwujemy.
+			if (el.getBoundingClientRect().top < vh * 0.92) {
+				el.classList.add('is-visible');
+			} else {
+				io.observe(el);
+			}
+		}
 		return () => io.disconnect();
 	}
 

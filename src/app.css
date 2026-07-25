@@ -72,7 +72,9 @@
 }
 
 @layer utilities {
-	.reveal {
+	/* Treść jest widoczna domyślnie. Animacja „reveal" włącza się dopiero, gdy
+	   skrypt układu doda klasę .js-reveal — jeśli JS się nie wykona, nic nie znika. */
+	html.js-reveal .reveal {
 		opacity: 0;
 		transform: translateY(24px);
 		transition:
@@ -80,13 +82,13 @@
 			transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
-	.reveal.is-visible {
+	html.js-reveal .reveal.is-visible {
 		opacity: 1;
 		transform: translateY(0);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.reveal {
+		html.js-reveal .reveal {
 			opacity: 1;
 			transform: none;
 			transition: none;
