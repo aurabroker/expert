@@ -51,14 +51,14 @@ export async function POST({ request }) {
 	}
 
 	const apiKey = env.RESEND_API_KEY;
-	const to = env.CONTACT_TO_EMAIL || 'biuro@auraexpert.pl';
+	const to = env.CONTACT_TO_EMAIL || 'zarzad@auraexpert.pl';
 	const from = env.CONTACT_FROM_EMAIL || 'Aura Expert <formularz@auraexpert.pl>';
 
 	// Bez klucza API nie możemy wysłać — zwróć błąd konfiguracji (log po stronie serwera).
 	if (!apiKey) {
 		console.error('[contact] Brak RESEND_API_KEY — wiadomość nie została wysłana.');
 		return json(
-			{ ok: false, error: 'Formularz jest chwilowo niedostępny. Napisz do nas na biuro@auraexpert.pl.' },
+			{ ok: false, error: 'Formularz jest chwilowo niedostępny. Napisz do nas na zarzad@auraexpert.pl.' },
 			{ status: 503 }
 		);
 	}

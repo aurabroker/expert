@@ -7,9 +7,9 @@ export const site = {
 	description:
 		'Specjalistyczne rozwiązania ubezpieczeniowe dla firm. Ochrona dyrektorów (D&O), danych (Cyber) i finansów (TAX) przed współczesnymi zagrożeniami.',
 	url: 'https://auraexpert.pl',
-	email: 'biuro@auraexpert.pl',
-	phone: '+48 123 456 789',
-	phoneHref: '+48123456789',
+	email: 'zarzad@auraexpert.pl',
+	phone: '+48 504 400 901',
+	phoneHref: '+48504400901',
 	location: 'Słupsk, Pomorskie · Polska',
 	// Google Analytics 4 — wpisz ID (np. 'G-XXXXXXXXXX'), puste = wyłączone.
 	// Stała build-time: strona pozostaje w pełni statyczna (bez fetchy w runtime).
