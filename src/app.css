@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--nav-h: 76px;
+	}
+
+	html {
+		scroll-behavior: smooth;
+		-webkit-text-size-adjust: 100%;
+	}
+
+	body {
+		@apply bg-white font-sans text-ink antialiased;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		@apply font-display tracking-tight;
+		text-wrap: balance;
+	}
+
+	::selection {
+		@apply bg-cyan/20 text-navy;
+	}
+
+	:focus-visible {
+		@apply outline-none ring-2 ring-cyan ring-offset-2 ring-offset-white;
+	}
+}
+
+@layer components {
+	.container-x {
+		@apply mx-auto w-full max-w-container px-4 md:px-10;
+	}
+
+	.section {
+		@apply py-16 md:py-28;
+	}
+
+	.eyebrow {
+		@apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-dark;
+	}
+
+	.btn {
+		@apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold transition-all duration-200 focus-visible:ring-offset-2;
+	}
+
+	.btn-primary {
+		@apply btn bg-navy text-white shadow-card hover:-translate-y-0.5 hover:bg-navy-700 hover:shadow-card-hover;
+	}
+
+	.btn-accent {
+		@apply btn bg-accent text-white shadow-card hover:-translate-y-0.5 hover:bg-accent-dark hover:shadow-card-hover;
+	}
+
+	.btn-outline {
+		@apply btn border border-navy/20 bg-transparent text-navy hover:border-navy hover:bg-navy hover:text-white;
+	}
+
+	.btn-ghost-light {
+		@apply btn border border-white/25 bg-white/5 text-white hover:bg-white hover:text-navy;
+	}
+
+	.link-arrow {
+		@apply inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-dark transition-colors hover:text-navy;
+	}
+}
+
+@layer utilities {
+	.reveal {
+		opacity: 0;
+		transform: translateY(24px);
+		transition:
+			opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+			transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.reveal.is-visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.reveal {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
+		html {
+			scroll-behavior: auto;
+		}
+	}
+}
