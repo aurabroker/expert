@@ -182,27 +182,40 @@ export const benefits = [
 	}
 ];
 
-export const testimonials = [
+// Case study — anonimizowane, przykładowe realizacje (do podmiany na prawdziwe).
+export const caseStudies = [
 	{
-		quote:
-			'Aura Expert uporządkowała ochronę naszego zarządu. Polisa D&O była dopięta w każdym szczególe — wreszcie mamy pewność, że decyzje biznesowe nie zagrażają majątkowi osobistemu.',
-		name: 'Marek Kowalski',
-		role: 'CEO · Kowalski Consulting',
-		initials: 'MK'
+		tag: 'Cyber',
+		metric: '72h',
+		metricLabel: 'powrót do działania',
+		title: 'Ransomware w szczycie sezonu',
+		challenge:
+			'Atak ransomware zaszyfrował systemy sprzedaży sklepu e-commerce w najgorszym możliwym momencie — podczas szczytu sezonu.',
+		solution:
+			'Uruchomiliśmy zespół reagowania, a polisa cyber pokryła koszty przywrócenia systemów oraz utracony zysk z przerwy w działalności.',
+		result: 'Powrót do sprzedaży w 72 godziny i pełna wypłata odszkodowania.'
 	},
 	{
-		quote:
-			'Po incydencie ransomware zespół Aura Expert przejął całą obsługę roszczenia. Systemy wróciły do działania, a odszkodowanie zostało wypłacone błyskawicznie.',
-		name: 'Anna Nowak',
-		role: 'COO · TechFlow S.A.',
-		initials: 'AN'
+		tag: 'D&O',
+		metric: '100%',
+		metricLabel: 'kosztów obrony',
+		title: 'Roszczenie wobec zarządu',
+		challenge:
+			'Po zmianie właścicielskiej wspólnik skierował roszczenie wobec członków zarządu spółki technologicznej.',
+		solution:
+			'Polisa D&O przejęła koszty obrony prawnej i zabezpieczyła majątek osobisty kadry zarządzającej.',
+		result: 'Zarząd bez ryzyka finansowego, spór zakończony ugodą.'
 	},
 	{
-		quote:
-			'Kontrola podatkowa, która mogła sparaliżować firmę, przeszła gładko dzięki ochronie i reprezentacji zapewnionej przez Aura Expert. Profesjonalizm najwyższej klasy.',
-		name: 'Piotr Tomaszewski',
-		role: 'CFO · DewelopPL Sp. z o.o.',
-		initials: 'PT'
+		tag: 'OC zawodowe',
+		metric: '0 zł',
+		metricLabel: 'strat klienta',
+		title: 'Błąd w biurze rachunkowym',
+		challenge:
+			'Pomyłka w rozliczeniu naraziła klienta biura rachunkowego na dopłatę podatku i odsetki, a samo biuro — na kontrolę.',
+		solution:
+			'OC zawodowe pokryło roszczenie klienta, a ochrona podatkowa — koszty postępowania i profesjonalnej reprezentacji.',
+		result: 'Klient bez strat finansowych, reputacja biura zachowana.'
 	}
 ];
 

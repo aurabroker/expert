@@ -3,7 +3,7 @@
 	import Hero from '$components/Hero.svelte';
 	import ServiceCards from '$components/ServiceCards.svelte';
 	import Benefits from '$components/Benefits.svelte';
-	import Testimonials from '$components/Testimonials.svelte';
+	import CaseStudy from '$components/CaseStudy.svelte';
 	import ContactForm from '$components/ContactForm.svelte';
 	import Footer from '$components/Footer.svelte';
 	import { site } from '$data/content.js';
@@ -60,7 +60,7 @@
 	<Hero />
 	<ServiceCards />
 	<Benefits />
-	<Testimonials />
+	<CaseStudy />
 	<ContactForm />
 </main>
 

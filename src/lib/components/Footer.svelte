@@ -14,7 +14,7 @@
 				{ label: 'Ochrona Podatkowa', href: '/#uslugi' },
 				{ label: 'BeautyPolisa', href: '/#uslugi' },
 				{ label: 'Ubezpieczenia grupowe', href: '/#uslugi' },
-				{ label: 'Referencje', href: '/#referencje' }
+				{ label: 'Case study', href: '/#case-study' }
 			]
 		},
 		{
