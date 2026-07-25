@@ -32,7 +32,7 @@ Aplikacja: http://localhost:5173
 | Zmienna              | Opis                                                       | Wymagana |
 | -------------------- | ---------------------------------------------------------- | -------- |
 | `RESEND_API_KEY`     | Klucz API Resend do wysyłki e-maili                        | tak\*    |
-| `CONTACT_TO_EMAIL`   | Adres odbiorcy zgłoszeń (domyślnie `biuro@auraexpert.pl`)  | nie      |
+| `CONTACT_TO_EMAIL`   | Adres odbiorcy zgłoszeń (domyślnie `zarzad@auraexpert.pl`) | nie      |
 | `CONTACT_FROM_EMAIL` | Nadawca (domena zweryfikowana w Resend)                    | nie      |
 | `PUBLIC_GA_ID`       | ID Google Analytics 4 (np. `G-XXXXXXXXXX`); puste = wył.   | nie      |
 
