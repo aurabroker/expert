@@ -1,7 +1,7 @@
 <script>
 	import '../app.css';
 	import { onMount } from 'svelte';
-	import { env } from '$env/dynamic/public';
+	import { site } from '$data/content.js';
 
 	let { children } = $props();
 
@@ -27,7 +27,7 @@
 	}
 
 	function initAnalytics() {
-		const id = env.PUBLIC_GA_ID;
+		const id = site.gaId;
 		if (!id) return;
 		const s = document.createElement('script');
 		s.async = true;

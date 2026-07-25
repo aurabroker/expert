@@ -10,7 +10,10 @@ export const site = {
 	email: 'biuro@auraexpert.pl',
 	phone: '+48 123 456 789',
 	phoneHref: '+48123456789',
-	location: 'Słupsk, Pomorskie · Polska'
+	location: 'Słupsk, Pomorskie · Polska',
+	// Google Analytics 4 — wpisz ID (np. 'G-XXXXXXXXXX'), puste = wyłączone.
+	// Stała build-time: strona pozostaje w pełni statyczna (bez fetchy w runtime).
+	gaId: ''
 };
 
 export const nav = [
