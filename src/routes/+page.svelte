@@ -23,8 +23,6 @@
 		areaServed: 'PL',
 		address: {
 			'@type': 'PostalAddress',
-			addressLocality: 'Słupsk',
-			addressRegion: 'Pomorskie',
 			addressCountry: 'PL'
 		},
 		slogan: site.tagline

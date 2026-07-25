@@ -7,14 +7,14 @@
 	<div class="container-x">
 		<div class="max-w-2xl reveal">
 			<p class="eyebrow">Zakres ochrony</p>
-			<h2 class="mt-4 text-3xl font-bold text-navy sm:text-4xl">Trzy filary bezpieczeństwa firmy</h2>
+			<h2 class="mt-4 text-3xl font-bold text-navy sm:text-4xl">Nasze specjalizacje ubezpieczeniowe</h2>
 			<p class="mt-4 text-lg text-muted">
-				Skupiamy się na ryzykach, które dziś realnie zagrażają przedsiębiorstwom — decyzjach zarządu,
-				danych i finansach.
+				Od ochrony zarządu, danych i finansów firmy, po dedykowaną polisę dla branży beauty —
+				projektujemy ochronę tam, gdzie naprawdę jej potrzeba.
 			</p>
 		</div>
 
-		<div class="mt-14 grid gap-6 md:grid-cols-3">
+		<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 			{#each services as service, i}
 				<article class="service-card reveal" style="transition-delay:{i * 100}ms">
 					<div class="service-card__icon">

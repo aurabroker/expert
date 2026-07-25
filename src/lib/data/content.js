@@ -10,10 +10,26 @@ export const site = {
 	email: 'zarzad@auraexpert.pl',
 	phone: '+48 504 400 901',
 	phoneHref: '+48504400901',
-	location: 'Słupsk, Pomorskie · Polska',
+	location: 'Warszawa',
 	// Google Analytics 4 — wpisz ID (np. 'G-XXXXXXXXXX'), puste = wyłączone.
 	// Stała build-time: strona pozostaje w pełni statyczna (bez fetchy w runtime).
 	gaId: ''
+};
+
+// Dane rejestrowe (z informacji o dystrybutorze).
+export const company = {
+	legalName: 'Aura Expert spółka z ograniczoną odpowiedzialnością',
+	shortName: 'Aura Expert sp. z o.o.',
+	address: 'ul. Bolkowska 2A/28, 01-466 Warszawa',
+	krs: '0000599840',
+	krsCourt:
+		'Sąd Rejonowy dla m.st. Warszawy w Warszawie, XIII Wydział Gospodarczy Krajowego Rejestru Sądowego',
+	nip: '5242793544',
+	regon: '363673048',
+	kapital: '5 000 zł',
+	knfNumber: '11229690/A',
+	knfRegister: 'https://rpu.knf.gov.pl',
+	iodEmail: 'iod@auraexpert.pl'
 };
 
 export const nav = [
@@ -86,6 +102,22 @@ export const services = [
 			'Reprezentacja przed organami skarbowymi',
 			'Spory dotyczące VAT, CIT i cen transferowych',
 			'Doradztwo prewencyjne i audyt ryzyka'
+		],
+		cta: 'Dowiedz się więcej'
+	},
+	{
+		id: 'beauty',
+		tag: 'Beauty',
+		title: 'BeautyPolisa',
+		subtitle: 'Ochrona salonów i gabinetów',
+		icon: 'sparkle',
+		description:
+			'Dedykowana ochrona dla salonów kosmetycznych, studiów tatuażu, barberów i gabinetów SPA — od OC za szkody klientom po sprzęt i lokal.',
+		points: [
+			'OC za szkody wyrządzone klientom',
+			'Ubezpieczenie sprzętu i wyposażenia',
+			'Ochrona lokalu i następstw zdarzeń',
+			'Zabiegi kosmetyczne, tatuaż, SPA i barber'
 		],
 		cta: 'Dowiedz się więcej'
 	}

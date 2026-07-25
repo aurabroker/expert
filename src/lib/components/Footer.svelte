@@ -1,6 +1,6 @@
 <script>
 	import Logo from './Logo.svelte';
-	import { site, nav } from '$data/content.js';
+	import { site, company } from '$data/content.js';
 
 	const year = new Date().getFullYear();
 
@@ -11,6 +11,7 @@
 				{ label: 'Ubezpieczenie D&O', href: '/#uslugi' },
 				{ label: 'Ubezpieczenie Cyber', href: '/#uslugi' },
 				{ label: 'Ochrona Podatkowa', href: '/#uslugi' },
+				{ label: 'BeautyPolisa', href: '/#uslugi' },
 				{ label: 'Referencje', href: '/#referencje' }
 			]
 		},
@@ -29,14 +30,17 @@
 	<div class="container-x">
 		<div class="footer__top">
 			<div class="max-w-sm">
-				<span class="inline-flex rounded-xl bg-white px-4 py-3 shadow-sm">
-					<Logo class="h-12" />
+				<span class="inline-flex rounded-xl bg-white px-5 py-4 shadow-sm">
+					<Logo class="h-16 sm:h-[4.75rem]" />
 				</span>
 				<p class="mt-5 text-sm leading-relaxed text-slate-400">
-					{site.tagline.charAt(0).toUpperCase() + site.tagline.slice(1)}. Specjalistyczne
-					ubezpieczenia dla firm — D&O, Cyber i ochrona podatkowa.
+					Specjalistyczne ubezpieczenia dla firm — D&O, Cyber, ochrona podatkowa i BeautyPolisa.
 				</p>
-				<p class="mt-4 text-sm text-slate-400">{site.location}</p>
+				<div class="mt-5 space-y-1 text-sm text-slate-400">
+					<p class="font-medium text-slate-300">{company.shortName}</p>
+					<p>{company.address}</p>
+					<p>KRS {company.krs} · NIP {company.nip} · REGON {company.regon}</p>
+				</div>
 			</div>
 
 			{#each columns as col}
@@ -59,12 +63,18 @@
 			</div>
 		</div>
 
+		<p class="footer__legal">
+			{company.shortName} jest agentem ubezpieczeniowym wpisanym do rejestru agentów prowadzonego
+			przez Komisję Nadzoru Finansowego (KNF) pod numerem {company.knfNumber}. Rejestr dostępny jest
+			na stronie <a href={company.knfRegister} target="_blank" rel="noopener">rpu.knf.gov.pl</a>.
+		</p>
+
 		<div class="footer__bottom">
 			<span>© {year} {site.name}. Wszelkie prawa zastrzeżone.</span>
 			<div class="flex flex-wrap gap-x-6 gap-y-2">
-				<a href="/#" class="footer__link">Polityka prywatności</a>
-				<a href="/#" class="footer__link">Regulamin</a>
-				<a href="/#" class="footer__link">RODO</a>
+				<a href="/polityka-prywatnosci" class="footer__link">Polityka prywatności</a>
+				<a href="/regulamin" class="footer__link">Regulamin</a>
+				<a href="/rodo" class="footer__link">RODO</a>
 			</div>
 		</div>
 	</div>
@@ -104,11 +114,25 @@
 	.footer__link:hover {
 		color: #4fb9e8;
 	}
+	.footer__legal {
+		padding-top: 1.75rem;
+		font-size: 0.78rem;
+		line-height: 1.6;
+		color: #64748b;
+	}
+	.footer__legal :global(a) {
+		color: #94a3b8;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+	.footer__legal :global(a:hover) {
+		color: #4fb9e8;
+	}
 	.footer__bottom {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		padding-top: 1.75rem;
+		padding-top: 1.25rem;
 		font-size: 0.8rem;
 		color: #64748b;
 	}
