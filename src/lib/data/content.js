@@ -39,6 +39,14 @@ export const nav = [
 	{ label: 'Ochrona Podatkowa', href: '/ubezpieczenia/ochrona-podatkowa' }
 ];
 
+// Powiązane serwisy Aura Expert (linki zewnętrzne w stopce).
+export const externalServices = [
+	{ label: 'utratadochodu.pl', href: 'https://utratadochodu.pl' },
+	{ label: 'ERGO Grupa Otwarta', href: 'https://ergo.beautypolisa.eu' },
+	{ label: 'Grupowe Pakiety Branżowe', href: 'https://ergo.auraexpert.pl/' },
+	{ label: 'Beauty Polisa', soon: true }
+];
+
 export const hero = {
 	eyebrow: 'Wyspecjalizowana agencja ubezpieczeniowa',
 	title: 'Specjalistyczne rozwiązania ubezpieczeniowe dla firm',

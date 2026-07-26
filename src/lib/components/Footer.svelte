@@ -1,6 +1,6 @@
 <script>
 	import Logo from './Logo.svelte';
-	import { site, company } from '$data/content.js';
+	import { site, company, externalServices } from '$data/content.js';
 
 	const year = new Date().getFullYear();
 
@@ -65,6 +65,21 @@
 			</div>
 		</div>
 
+		<div class="footer__services">
+			<span class="footer__services-label">Nasze serwisy</span>
+			<div class="footer__services-links">
+				{#each externalServices as s}
+					{#if s.soon}
+						<span class="footer__service footer__service--soon">
+							{s.label}<span class="footer__soon">wkrótce</span>
+						</span>
+					{:else}
+						<a href={s.href} class="footer__service" target="_blank" rel="noopener">{s.label}</a>
+					{/if}
+				{/each}
+			</div>
+		</div>
+
 		<p class="footer__legal">
 			{company.shortName} jest agentem ubezpieczeniowym wpisanym do rejestru agentów prowadzonego
 			przez Komisję Nadzoru Finansowego (KNF) pod numerem {company.knfNumber}. Rejestr dostępny jest
@@ -115,6 +130,51 @@
 	}
 	.footer__link:hover {
 		color: #4fb9e8;
+	}
+	.footer__services {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.7rem 1.5rem;
+		padding-top: 1.75rem;
+	}
+	.footer__services-label {
+		font-family: 'Sora', sans-serif;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #ffffff;
+	}
+	.footer__services-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem 1.25rem;
+	}
+	.footer__service {
+		display: inline-flex;
+		align-items: center;
+		font-size: 0.9rem;
+		color: #94a3b8;
+		transition: color 0.2s ease;
+	}
+	.footer__service:hover {
+		color: #4fb9e8;
+	}
+	.footer__service--soon {
+		color: #64748b;
+		cursor: default;
+	}
+	.footer__soon {
+		margin-left: 0.45rem;
+		font-size: 0.62rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: #ff7a00;
+		border: 1px solid rgba(255, 122, 0, 0.4);
+		border-radius: 999px;
+		padding: 0.1rem 0.5rem;
 	}
 	.footer__legal {
 		padding-top: 1.75rem;
