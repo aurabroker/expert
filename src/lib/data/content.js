@@ -45,7 +45,7 @@ export const externalServices = [
 		label: 'utratadochodu.pl',
 		desc: 'Ochrona dochodu przedsiębiorców',
 		href: 'https://utratadochodu.pl',
-		img: '/images/services/utratadochodu.svg',
+		img: '/images/services/utratadochodu.png',
 		kind: 'facet'
 	},
 	{
