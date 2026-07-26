@@ -102,17 +102,19 @@
 		<div class="hero__visual">
 			<div class="hero__frame">
 				<div class="hero__frame-fallback"><Facets tone="cyan" /></div>
-				{#each heroSlides as s, i}
+				<picture>
+					<source srcset="/images/hero.webp" type="image/webp" />
 					<img
-						class="hero__slide-img"
-						class:is-active={i === current}
-						src={s.image}
-						alt=""
-						loading={i === 0 ? 'eager' : 'lazy'}
-						fetchpriority={i === 0 ? 'high' : 'auto'}
-						onerror={(e) => e.currentTarget.classList.add('failed')}
+						class="hero__img"
+						src="/images/hero.jpg"
+						alt="Doradca ubezpieczeniowy Aura Expert"
+						width="1100"
+						height="1380"
+						loading="eager"
+						fetchpriority="high"
+						onerror={(e) => (e.currentTarget.style.display = 'none')}
 					/>
-				{/each}
+				</picture>
 			</div>
 
 			<div class="hero__badge hero__badge--top">
@@ -253,21 +255,18 @@
 		background: linear-gradient(135deg, #1e3a4c, #0f2438);
 		aspect-ratio: 4 / 5;
 	}
-	.hero__slide-img {
-		position: absolute;
-		inset: 0;
+	.hero__frame picture {
+		position: relative;
 		z-index: 1;
+		display: block;
+		height: 100%;
+		width: 100%;
+	}
+	.hero__img {
+		display: block;
 		height: 100%;
 		width: 100%;
 		object-fit: cover;
-		opacity: 0;
-		transition: opacity 0.8s ease;
-	}
-	.hero__slide-img.is-active {
-		opacity: 1;
-	}
-	.hero__slide-img.failed {
-		opacity: 0 !important;
 	}
 	.hero__frame-fallback {
 		position: absolute;
@@ -320,11 +319,6 @@
 		}
 		.hero__badge--bottom {
 			right: 0.4rem;
-		}
-	}
-	@media (prefers-reduced-motion: reduce) {
-		.hero__slide-img {
-			transition: none;
 		}
 	}
 </style>
