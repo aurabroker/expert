@@ -39,12 +39,36 @@ export const nav = [
 	{ label: 'Ochrona Podatkowa', href: '/ubezpieczenia/ochrona-podatkowa' }
 ];
 
-// Powiązane serwisy Aura Expert (linki zewnętrzne w stopce).
+// Powiązane serwisy Aura Expert (sekcja „Nasze serwisy").
 export const externalServices = [
-	{ label: 'utratadochodu.pl', href: 'https://utratadochodu.pl' },
-	{ label: 'ERGO Grupa Otwarta', href: 'https://ergo.beautypolisa.eu' },
-	{ label: 'Grupowe Pakiety Branżowe', href: 'https://ergo.auraexpert.pl/' },
-	{ label: 'Beauty Polisa', soon: true }
+	{
+		label: 'utratadochodu.pl',
+		desc: 'Ochrona dochodu przedsiębiorców',
+		href: 'https://utratadochodu.pl',
+		img: '/images/services/utratadochodu.svg',
+		kind: 'facet'
+	},
+	{
+		label: 'ERGO Grupa Otwarta',
+		desc: 'Ubezpieczenia grupowe ERGO',
+		href: 'https://ergo.beautypolisa.eu',
+		img: '/images/services/ergo.png',
+		kind: 'logo'
+	},
+	{
+		label: 'Grupowe Pakiety Branżowe',
+		desc: 'Pakiety ubezpieczeń dla branż',
+		href: 'https://ergo.auraexpert.pl/',
+		img: '/images/icons/ubezpieczenia-grupowe.png',
+		kind: 'facet'
+	},
+	{
+		label: 'Beauty Polisa',
+		desc: 'Ochrona salonów i gabinetów',
+		img: '/images/beautypolisa.png',
+		kind: 'logo',
+		soon: true
+	}
 ];
 
 export const hero = {
@@ -178,24 +202,28 @@ export const services = [
 export const benefits = [
 	{
 		icon: 'medal',
+		iconImg: '/images/icons/benefit-ekspertyza.png',
 		title: 'Ekspertyza',
 		description:
 			'Dysponujemy wieloletnim doświadczeniem w ubezpieczeniach korporacyjnych. Łączymy wiedzę prawną z analizą ryzyka, by chronić to, co naprawdę istotne.'
 	},
 	{
 		icon: 'tools',
+		iconImg: '/images/icons/benefit-rozwiazania.png',
 		title: 'Rozwiązania na miarę',
 		description:
 			'Dostosowujemy każdą polisę do specyfiki Państwa działalności. Porównujemy oferty wielu ubezpieczycieli i negocjujemy warunki bez kompromisów.'
 	},
 	{
 		icon: 'people',
+		iconImg: '/images/icons/benefit-wsparcie.png',
 		title: 'Wsparcie klienta',
 		description:
 			'Angażujemy się na każdym etapie — od analizy, przez wdrożenie, po obsługę szkody. W trudnym momencie jesteśmy po Państwa stronie.'
 	},
 	{
 		icon: 'clock',
+		iconImg: '/images/icons/benefit-szybkosc.png',
 		title: 'Szybkość działania',
 		description:
 			'Bezpłatna analiza ryzyka w 48 godzin i średni czas odpowiedzi poniżej 2 godzin. Działamy wtedy, gdy liczy się każda chwila.'

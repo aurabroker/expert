@@ -5,6 +5,7 @@
 	import Benefits from '$components/Benefits.svelte';
 	import CaseStudy from '$components/CaseStudy.svelte';
 	import ContactForm from '$components/ContactForm.svelte';
+	import PartnerServices from '$components/PartnerServices.svelte';
 	import Footer from '$components/Footer.svelte';
 	import { site } from '$data/content.js';
 
@@ -62,6 +63,7 @@
 	<Benefits />
 	<CaseStudy />
 	<ContactForm />
+	<PartnerServices />
 </main>
 
 <Footer />

@@ -1,6 +1,6 @@
 <script>
 	import Logo from './Logo.svelte';
-	import { site, company, externalServices } from '$data/content.js';
+	import { site, company } from '$data/content.js';
 
 	const year = new Date().getFullYear();
 
@@ -30,26 +30,6 @@
 
 <footer class="footer">
 	<div class="container-x">
-		<div class="footer__promo">
-			<span class="footer__promo-label">Nasze serwisy</span>
-			<div class="footer__promo-links">
-				{#each externalServices as s}
-					{#if s.soon}
-						<span class="footer__promo-item footer__promo-item--soon">
-							{s.label}<span class="footer__soon">wkrótce</span>
-						</span>
-					{:else}
-						<a href={s.href} class="footer__promo-item" target="_blank" rel="noopener">
-							<span>{s.label}</span>
-							<svg class="footer__promo-arrow" viewBox="0 0 24 24" aria-hidden="true">
-								<path d="M5 12h14M13 6l6 6-6 6" />
-							</svg>
-						</a>
-					{/if}
-				{/each}
-			</div>
-		</div>
-
 		<div class="footer__top">
 			<div class="max-w-sm">
 				<span class="inline-flex rounded-xl bg-white px-5 py-4 shadow-sm">

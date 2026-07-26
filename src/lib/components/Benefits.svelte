@@ -27,9 +27,21 @@
 			<div class="grid gap-5 sm:grid-cols-2">
 				{#each benefits as benefit, i}
 					<div class="benefit-card reveal" style="transition-delay:{i * 90}ms">
-						<div class="benefit-card__icon">
-							<Icon name={benefit.icon} class="h-6 w-6" />
-						</div>
+						{#if benefit.iconImg}
+							<img
+								class="benefit-card__img"
+								src={benefit.iconImg}
+								alt=""
+								width="52"
+								height="52"
+								loading="lazy"
+								decoding="async"
+							/>
+						{:else}
+							<div class="benefit-card__icon">
+								<Icon name={benefit.icon} class="h-6 w-6" />
+							</div>
+						{/if}
 						<h3 class="mt-5 text-lg font-bold text-white">{benefit.title}</h3>
 						<p class="mt-2 text-sm leading-relaxed text-slate-300">{benefit.description}</p>
 					</div>
@@ -79,6 +91,13 @@
 		transform: translateY(-4px);
 		background: rgba(255, 255, 255, 0.07);
 		border-color: rgba(28, 157, 215, 0.35);
+	}
+	.benefit-card__img {
+		height: 52px;
+		width: 52px;
+		object-fit: contain;
+		display: block;
+		filter: drop-shadow(0 6px 14px rgba(28, 157, 215, 0.3));
 	}
 	.benefit-card__icon {
 		display: grid;
