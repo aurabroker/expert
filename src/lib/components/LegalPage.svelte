@@ -2,6 +2,7 @@
 	import Header from './Header.svelte';
 	import Footer from './Footer.svelte';
 	import Icon from './Icon.svelte';
+	import PartnerServices from './PartnerServices.svelte';
 	import { site } from '$data/content.js';
 
 	/**
@@ -39,6 +40,7 @@
 			{@render children()}
 		</div>
 	</div>
+	<PartnerServices />
 </main>
 
 <Footer />

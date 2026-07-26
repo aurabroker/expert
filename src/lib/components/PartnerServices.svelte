@@ -3,7 +3,7 @@
 	import { externalServices } from '$data/content.js';
 </script>
 
-<section id="serwisy" class="section bg-white">
+<section id="serwisy" class="section bg-slate-50">
 	<div class="container-x">
 		<div class="max-w-2xl reveal">
 			<p class="eyebrow">Nasze serwisy</p>

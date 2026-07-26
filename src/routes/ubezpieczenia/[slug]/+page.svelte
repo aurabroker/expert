@@ -3,6 +3,7 @@
 	import Footer from '$components/Footer.svelte';
 	import Icon from '$components/Icon.svelte';
 	import Facets from '$components/Facets.svelte';
+	import PartnerServices from '$components/PartnerServices.svelte';
 	import { site } from '$data/content.js';
 
 	let { data } = $props();
@@ -160,6 +161,8 @@
 			</div>
 		</section>
 	{/if}
+
+	<PartnerServices />
 </main>
 
 <Footer />
