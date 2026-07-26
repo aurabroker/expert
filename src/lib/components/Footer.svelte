@@ -8,12 +8,12 @@
 		{
 			title: 'Ubezpieczenia',
 			links: [
-				{ label: 'Ubezpieczenie D&O', href: '/#uslugi' },
-				{ label: 'OC zawodowe', href: '/#uslugi' },
-				{ label: 'Ubezpieczenie Cyber', href: '/#uslugi' },
-				{ label: 'Ochrona Podatkowa', href: '/#uslugi' },
-				{ label: 'BeautyPolisa', href: '/#uslugi' },
-				{ label: 'Ubezpieczenia grupowe', href: '/#uslugi' },
+				{ label: 'Ubezpieczenie D&O', href: '/ubezpieczenia/d-o' },
+				{ label: 'OC zawodowe', href: '/ubezpieczenia/oc-zawodowe' },
+				{ label: 'Ubezpieczenie Cyber', href: '/ubezpieczenia/cyber' },
+				{ label: 'Ochrona Podatkowa', href: '/ubezpieczenia/ochrona-podatkowa' },
+				{ label: 'BeautyPolisa', href: '/ubezpieczenia/beautypolisa' },
+				{ label: 'Ubezpieczenia grupowe', href: '/ubezpieczenia/ubezpieczenia-grupowe' },
 				{ label: 'Case study', href: '/#case-study' }
 			]
 		},

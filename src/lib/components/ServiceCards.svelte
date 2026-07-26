@@ -41,7 +41,7 @@
 						{/each}
 					</ul>
 
-					<a href="/#kontakt" class="service-card__cta">
+					<a href="/ubezpieczenia/{service.slug}" class="service-card__cta">
 						{service.cta}
 						<Icon name="arrow" class="h-4 w-4" />
 					</a>
