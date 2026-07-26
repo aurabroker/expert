@@ -1,9 +1,13 @@
 <script>
 	import '../app.css';
 	import { onMount } from 'svelte';
+	import { afterNavigate } from '$app/navigation';
 	import { site } from '$data/content.js';
 
 	let { children } = $props();
+
+	/** @type {() => void} */
+	let disconnectReveal = () => {};
 
 	function initRevealAnimations() {
 		const els = Array.from(document.querySelectorAll('.reveal'));
@@ -26,6 +30,7 @@
 		);
 		const vh = window.innerHeight || 800;
 		for (const el of els) {
+			if (el.classList.contains('is-visible')) continue;
 			// Elementy już w widoku pokazujemy natychmiast (bez migotania), resztę obserwujemy.
 			if (el.getBoundingClientRect().top < vh * 0.92) {
 				el.classList.add('is-visible');
@@ -52,10 +57,16 @@
 		gtag('config', id);
 	}
 
+	// Po każdej nawigacji (również pierwszym wejściu i linkach z #) ponawiamy
+	// inicjalizację, aby świeżo wyrenderowana treść nigdy nie została ukryta.
+	afterNavigate(() => {
+		disconnectReveal();
+		disconnectReveal = initRevealAnimations();
+	});
+
 	onMount(() => {
-		const cleanup = initRevealAnimations();
 		initAnalytics();
-		return cleanup;
+		return () => disconnectReveal();
 	});
 </script>
 
