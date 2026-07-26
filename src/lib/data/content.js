@@ -59,8 +59,8 @@ export const externalServices = [
 		label: 'Grupowe Pakiety Branżowe',
 		desc: 'Pakiety ubezpieczeń dla branż',
 		href: 'https://ergo.auraexpert.pl/',
-		img: '/images/icons/ubezpieczenia-grupowe.png',
-		kind: 'facet'
+		img: '/images/services/ergo.png',
+		kind: 'logo'
 	},
 	{
 		label: 'Beauty Polisa',
