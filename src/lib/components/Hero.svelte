@@ -1,33 +1,95 @@
 <script>
+	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import Icon from './Icon.svelte';
 	import Facets from './Facets.svelte';
-	import { hero } from '$data/content.js';
+	import { hero, heroSlides } from '$data/content.js';
+
+	const INTERVAL = 6000;
+	let current = $state(0);
+	let paused = $state(false);
+	let timer;
+
+	const slide = $derived(heroSlides[current]);
+
+	function startTimer() {
+		clearInterval(timer);
+		timer = setInterval(() => {
+			if (!paused) current = (current + 1) % heroSlides.length;
+		}, INTERVAL);
+	}
+	function go(i) {
+		current = (i + heroSlides.length) % heroSlides.length;
+		startTimer();
+	}
+
+	onMount(() => {
+		startTimer();
+		return () => clearInterval(timer);
+	});
 </script>
 
-<section id="top" class="hero">
+<section
+	id="top"
+	class="hero"
+	onmouseenter={() => (paused = true)}
+	onmouseleave={() => (paused = false)}
+>
 	<div class="hero__bg" aria-hidden="true"></div>
 	<div class="hero__facets" aria-hidden="true"><Facets tone="blue" /></div>
-	<div class="container-x relative grid items-center gap-12 pt-32 pb-16 md:pt-40 md:pb-24 lg:grid-cols-[1.05fr_0.95fr]">
+
+	<div
+		class="container-x relative grid items-center gap-12 pt-32 pb-16 md:pt-40 md:pb-24 lg:grid-cols-[1.05fr_0.95fr]"
+	>
 		<div class="max-w-xl">
-			<p class="eyebrow reveal">
-				<span class="h-px w-6 bg-cyan"></span>
-				{hero.eyebrow}
-			</p>
-			<h1 class="reveal mt-5 text-4xl font-extrabold leading-[1.08] text-navy sm:text-5xl lg:text-6xl" style="transition-delay:80ms">
-				{hero.title}
-			</h1>
-			<p class="reveal mt-6 text-lg leading-relaxed text-muted" style="transition-delay:160ms">
-				{hero.subtitle}
-			</p>
-			<div class="reveal mt-9 flex flex-wrap gap-4" style="transition-delay:240ms">
-				<a href={hero.primaryCta.href} class="btn-primary">
-					{hero.primaryCta.label}
-					<Icon name="arrow" class="h-4 w-4" />
-				</a>
-				<a href={hero.secondaryCta.href} class="btn-outline">{hero.secondaryCta.label}</a>
+			<div class="hero__text" aria-live="polite">
+				{#key current}
+					<div in:fade={{ duration: 450 }}>
+						<p class="eyebrow">
+							<span class="h-px w-6 bg-cyan"></span>
+							{slide.tag}
+						</p>
+						<h1
+							class="mt-5 text-[2.1rem] font-extrabold leading-[1.1] text-navy sm:text-5xl lg:text-[3.3rem]"
+						>
+							{slide.title}
+						</h1>
+						<p class="mt-6 text-lg leading-relaxed text-muted">{slide.subtitle}</p>
+						<div class="mt-9 flex flex-wrap gap-4">
+							<a href={slide.href} class="btn-primary">
+								Dowiedz się więcej
+								<Icon name="arrow" class="h-4 w-4" />
+							</a>
+							<a href="/#kontakt" class="btn-outline">Zamów analizę ryzyka</a>
+						</div>
+					</div>
+				{/key}
 			</div>
 
-			<dl class="reveal mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-navy/10 pt-8" style="transition-delay:320ms">
+			<div class="hero__controls">
+				<div class="hero__dots" role="tablist" aria-label="Wybór slajdu">
+					{#each heroSlides as s, i}
+						<button
+							class="hero__dot"
+							class:is-active={i === current}
+							onclick={() => go(i)}
+							role="tab"
+							aria-selected={i === current}
+							aria-label={`${i + 1}. ${s.tag}`}
+						></button>
+					{/each}
+				</div>
+				<div class="hero__arrows">
+					<button class="hero__arrow" onclick={() => go(current - 1)} aria-label="Poprzedni slajd">
+						<Icon name="arrow" class="h-4 w-4 rotate-180" />
+					</button>
+					<button class="hero__arrow" onclick={() => go(current + 1)} aria-label="Następny slajd">
+						<Icon name="arrow" class="h-4 w-4" />
+					</button>
+				</div>
+			</div>
+
+			<dl class="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-navy/10 pt-8">
 				{#each hero.stats as stat}
 					<div>
 						<dt class="font-display text-3xl font-bold text-navy">{stat.value}</dt>
@@ -37,21 +99,20 @@
 			</dl>
 		</div>
 
-		<div class="hero__visual reveal" style="transition-delay:200ms">
+		<div class="hero__visual">
 			<div class="hero__frame">
 				<div class="hero__frame-fallback"><Facets tone="cyan" /></div>
-				<picture>
-					<source srcset="/images/hero.webp" type="image/webp" />
+				{#each heroSlides as s, i}
 					<img
-						src={hero.image}
-						alt="Doradca ubezpieczeniowy Aura Expert w nowoczesnym biurze"
-						width="1100"
-						height="1380"
-						loading="eager"
-						fetchpriority="high"
-						onerror={(e) => (e.currentTarget.style.display = 'none')}
+						class="hero__slide-img"
+						class:is-active={i === current}
+						src={s.image}
+						alt=""
+						loading={i === 0 ? 'eager' : 'lazy'}
+						fetchpriority={i === 0 ? 'high' : 'auto'}
+						onerror={(e) => e.currentTarget.classList.add('failed')}
 					/>
-				</picture>
+				{/each}
 			</div>
 
 			<div class="hero__badge hero__badge--top">
@@ -115,6 +176,68 @@
 		background-size: 44px 44px;
 		mask-image: radial-gradient(70% 60% at 70% 20%, #000 0%, transparent 75%);
 	}
+
+	.hero__text {
+		position: relative;
+	}
+	@media (min-width: 1024px) {
+		.hero__text {
+			min-height: 22rem;
+		}
+	}
+
+	.hero__controls {
+		margin-top: 1.75rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		max-width: 28rem;
+	}
+	.hero__dots {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+	.hero__dot {
+		height: 8px;
+		width: 8px;
+		border-radius: 999px;
+		background: rgba(15, 36, 56, 0.2);
+		transition:
+			width 0.3s ease,
+			background 0.3s ease;
+	}
+	.hero__dot:hover {
+		background: rgba(15, 36, 56, 0.4);
+	}
+	.hero__dot.is-active {
+		width: 26px;
+		background: #1c9dd7;
+	}
+	.hero__arrows {
+		display: flex;
+		gap: 0.5rem;
+	}
+	.hero__arrow {
+		display: grid;
+		place-items: center;
+		height: 38px;
+		width: 38px;
+		border-radius: 999px;
+		border: 1px solid rgba(15, 36, 56, 0.15);
+		color: #0f2438;
+		transition:
+			background 0.2s ease,
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+	.hero__arrow:hover {
+		background: #0f2438;
+		border-color: #0f2438;
+		color: #ffffff;
+	}
+
 	.hero__visual {
 		position: relative;
 		margin-inline: auto;
@@ -130,18 +253,21 @@
 		background: linear-gradient(135deg, #1e3a4c, #0f2438);
 		aspect-ratio: 4 / 5;
 	}
-	.hero__frame picture {
-		position: relative;
+	.hero__slide-img {
+		position: absolute;
+		inset: 0;
 		z-index: 1;
-		display: block;
-		height: 100%;
-		width: 100%;
-	}
-	.hero__frame img {
-		display: block;
 		height: 100%;
 		width: 100%;
 		object-fit: cover;
+		opacity: 0;
+		transition: opacity 0.8s ease;
+	}
+	.hero__slide-img.is-active {
+		opacity: 1;
+	}
+	.hero__slide-img.failed {
+		opacity: 0 !important;
 	}
 	.hero__frame-fallback {
 		position: absolute;
@@ -194,6 +320,11 @@
 		}
 		.hero__badge--bottom {
 			right: 0.4rem;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.hero__slide-img {
+			transition: none;
 		}
 	}
 </style>

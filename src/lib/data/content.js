@@ -88,6 +88,59 @@ export const hero = {
 	]
 };
 
+// Slajdy karuzeli Hero — każdy dotyczy innego ubezpieczenia.
+// `image` to na razie losowy placeholder; docelowo można podmienić na `video`.
+export const heroSlides = [
+	{
+		tag: 'Ubezpieczenie D&O',
+		title: 'Chroń zarząd przed osobistą odpowiedzialnością',
+		subtitle:
+			'Decyzje biznesowe nie mogą zagrażać majątkowi członków zarządu. Polisa D&O bierze to ryzyko na siebie.',
+		href: '/ubezpieczenia/d-o',
+		image: 'https://picsum.photos/seed/aura-do/900/1100'
+	},
+	{
+		tag: 'OC zawodowe',
+		title: 'Zabezpiecz się przed skutkami błędów zawodowych',
+		subtitle:
+			'Jedno niedopatrzenie potrafi kosztować fortunę. OC zawodowe pokrywa roszczenia klientów i koszty obrony.',
+		href: '/ubezpieczenia/oc-zawodowe',
+		image: 'https://picsum.photos/seed/aura-oc/900/1100'
+	},
+	{
+		tag: 'Ubezpieczenie Cyber',
+		title: 'Przetrwaj każdy cyberatak bez przestojów',
+		subtitle:
+			'Ransomware, wyciek danych czy przerwa w działaniu — ochrona cyber stawia firmę na nogi w kilka godzin.',
+		href: '/ubezpieczenia/cyber',
+		image: 'https://picsum.photos/seed/aura-cyber/900/1100'
+	},
+	{
+		tag: 'Ochrona Podatkowa',
+		title: 'Kontrola skarbowa? Jesteś kryty',
+		subtitle:
+			'Pokrywamy koszty postępowań i profesjonalnej reprezentacji przed organami — bez uszczerbku dla płynności.',
+		href: '/ubezpieczenia/ochrona-podatkowa',
+		image: 'https://picsum.photos/seed/aura-tax/900/1100'
+	},
+	{
+		tag: 'BeautyPolisa',
+		title: 'Dedykowana ochrona dla branży beauty',
+		subtitle:
+			'Salon, sprzęt, klienci i zabiegi — jeden pakiet skrojony pod kosmetykę, tatuaż, barber i SPA.',
+		href: '/ubezpieczenia/beautypolisa',
+		image: 'https://picsum.photos/seed/aura-beauty/900/1100'
+	},
+	{
+		tag: 'Ubezpieczenia grupowe',
+		title: 'Zadbaj o bezpieczeństwo swojego zespołu',
+		subtitle:
+			'Grupowe ubezpieczenia na życie i zdrowie — benefit, który realnie buduje lojalność pracowników.',
+		href: '/ubezpieczenia/ubezpieczenia-grupowe',
+		image: 'https://picsum.photos/seed/aura-grupowe/900/1100'
+	}
+];
+
 export const services = [
 	{
 		id: 'do',
