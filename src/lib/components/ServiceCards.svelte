@@ -23,9 +23,21 @@
 						</span>
 						<p class="mt-4 text-sm font-medium text-cyan-light">{service.subtitle}</p>
 					{:else}
-						<div class="service-card__icon">
-							<Icon name={service.icon} class="h-7 w-7" />
-						</div>
+						{#if service.iconImg}
+							<img
+								class="service-card__img"
+								src={service.iconImg}
+								alt=""
+								width="52"
+								height="52"
+								loading="lazy"
+								decoding="async"
+							/>
+						{:else}
+							<div class="service-card__icon">
+								<Icon name={service.icon} class="h-7 w-7" />
+							</div>
+						{/if}
 						<span class="service-card__tag">{service.tag}</span>
 						<h3 class="mt-3 text-xl font-bold text-white">{service.title}</h3>
 						<p class="mt-1 text-sm font-medium text-cyan-light">{service.subtitle}</p>
@@ -95,6 +107,13 @@
 		background: rgba(28, 157, 215, 0.12);
 		border: 1px solid rgba(28, 157, 215, 0.25);
 		color: #4fb9e8;
+	}
+	.service-card__img {
+		height: 52px;
+		width: 52px;
+		object-fit: contain;
+		display: block;
+		filter: drop-shadow(0 6px 14px rgba(28, 157, 215, 0.25));
 	}
 	.service-card__logo {
 		display: inline-flex;

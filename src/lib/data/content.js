@@ -68,6 +68,7 @@ export const services = [
 	{
 		id: 'do',
 		slug: 'd-o',
+		iconImg: '/images/icons/d-o.png',
 		tag: 'D&O',
 		title: 'Ubezpieczenie D&O',
 		subtitle: 'Odpowiedzialność członków zarządu',
@@ -85,6 +86,7 @@ export const services = [
 	{
 		id: 'oc-zawodowe',
 		slug: 'oc-zawodowe',
+		iconImg: '/images/icons/oc-zawodowe.png',
 		tag: 'OC zawodowe',
 		title: 'Odpowiedzialność cywilna zawodowa',
 		subtitle: 'Ochrona wykonujących zawód',
@@ -102,6 +104,7 @@ export const services = [
 	{
 		id: 'cyber',
 		slug: 'cyber',
+		iconImg: '/images/icons/cyber.png',
 		tag: 'Cyber',
 		title: 'Ubezpieczenie Cyber',
 		subtitle: 'Ochrona danych i ciągłości działania',
@@ -119,6 +122,7 @@ export const services = [
 	{
 		id: 'tax',
 		slug: 'ochrona-podatkowa',
+		iconImg: '/images/icons/ochrona-podatkowa.png',
 		tag: 'TAX',
 		title: 'Ochrona Podatkowa',
 		subtitle: 'Bezpieczeństwo finansów firmy',
@@ -154,6 +158,7 @@ export const services = [
 	{
 		id: 'grupowe',
 		slug: 'ubezpieczenia-grupowe',
+		iconImg: '/images/icons/ubezpieczenia-grupowe.png',
 		tag: 'Grupowe',
 		title: 'Ubezpieczenia grupowe',
 		subtitle: 'Ochrona zespołu i pracowników',

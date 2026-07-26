@@ -56,7 +56,11 @@
 
 				{#if !service.logo}
 					<div class="svc-hero__icon" aria-hidden="true">
-						<Icon name={service.icon} class="h-14 w-14" />
+						{#if service.iconImg}
+							<img src={service.iconImg} alt="" width="80" height="80" />
+						{:else}
+							<Icon name={service.icon} class="h-14 w-14" />
+						{/if}
 					</div>
 				{/if}
 			</div>
