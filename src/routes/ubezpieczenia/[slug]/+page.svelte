@@ -145,7 +145,13 @@
 				<div class="mt-8 grid gap-5 sm:grid-cols-3">
 					{#each related as r}
 						<a href="/ubezpieczenia/{r.slug}" class="rel-card">
-							<span class="rel-card__icon"><Icon name={r.icon} class="h-6 w-6" /></span>
+							<span class="rel-card__icon">
+								{#if r.iconImg}
+									<img src={r.iconImg} alt="" width="30" height="30" />
+								{:else}
+									<Icon name={r.icon} class="h-6 w-6" />
+								{/if}
+							</span>
 							<span class="rel-card__title">{r.title}</span>
 							<span class="rel-card__more">Zobacz <Icon name="arrow" class="h-4 w-4" /></span>
 						</a>
@@ -376,11 +382,11 @@
 	.rel-card__icon {
 		display: grid;
 		place-items: center;
-		height: 44px;
-		width: 44px;
+		height: 48px;
+		width: 48px;
 		border-radius: 12px;
-		background: rgba(28, 157, 215, 0.1);
-		color: #127bb0;
+		background: linear-gradient(160deg, #1e3a4c, #0f2438);
+		color: #4fb9e8;
 	}
 	.rel-card__title {
 		font-size: 1.05rem;

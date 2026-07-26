@@ -30,6 +30,26 @@
 
 <footer class="footer">
 	<div class="container-x">
+		<div class="footer__promo">
+			<span class="footer__promo-label">Nasze serwisy</span>
+			<div class="footer__promo-links">
+				{#each externalServices as s}
+					{#if s.soon}
+						<span class="footer__promo-item footer__promo-item--soon">
+							{s.label}<span class="footer__soon">wkrótce</span>
+						</span>
+					{:else}
+						<a href={s.href} class="footer__promo-item" target="_blank" rel="noopener">
+							<span>{s.label}</span>
+							<svg class="footer__promo-arrow" viewBox="0 0 24 24" aria-hidden="true">
+								<path d="M5 12h14M13 6l6 6-6 6" />
+							</svg>
+						</a>
+					{/if}
+				{/each}
+			</div>
+		</div>
+
 		<div class="footer__top">
 			<div class="max-w-sm">
 				<span class="inline-flex rounded-xl bg-white px-5 py-4 shadow-sm">
@@ -62,21 +82,6 @@
 					<li><a href="mailto:{site.email}" class="footer__link">{site.email}</a></li>
 					<li><a href="tel:{site.phoneHref}" class="footer__link">{site.phone}</a></li>
 				</ul>
-			</div>
-		</div>
-
-		<div class="footer__services">
-			<span class="footer__services-label">Nasze serwisy</span>
-			<div class="footer__services-links">
-				{#each externalServices as s}
-					{#if s.soon}
-						<span class="footer__service footer__service--soon">
-							{s.label}<span class="footer__soon">wkrótce</span>
-						</span>
-					{:else}
-						<a href={s.href} class="footer__service" target="_blank" rel="noopener">{s.label}</a>
-					{/if}
-				{/each}
 			</div>
 		</div>
 
@@ -131,39 +136,71 @@
 	.footer__link:hover {
 		color: #4fb9e8;
 	}
-	.footer__services {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		gap: 0.7rem 1.5rem;
-		padding-top: 1.75rem;
+	.footer__promo {
+		padding-bottom: 2.5rem;
+		margin-bottom: 3rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	}
-	.footer__services-label {
+	.footer__promo-label {
+		display: block;
+		margin-bottom: 1.1rem;
 		font-family: 'Sora', sans-serif;
-		font-size: 0.75rem;
-		font-weight: 700;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: #ffffff;
-	}
-	.footer__services-links {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.6rem 1.25rem;
-	}
-	.footer__service {
-		display: inline-flex;
-		align-items: center;
 		font-size: 0.9rem;
-		color: #94a3b8;
-		transition: color 0.2s ease;
-	}
-	.footer__service:hover {
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
 		color: #4fb9e8;
 	}
-	.footer__service--soon {
-		color: #64748b;
+	.footer__promo-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.85rem;
+	}
+	.footer__promo-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		padding: 0.7rem 1.2rem;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(79, 185, 232, 0.3);
+		color: #e2e8f0;
+		font-size: 0.95rem;
+		font-weight: 600;
+		transition:
+			background 0.2s ease,
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			color 0.2s ease;
+	}
+	.footer__promo-item:hover {
+		background: rgba(28, 157, 215, 0.16);
+		border-color: #1c9dd7;
+		color: #ffffff;
+		transform: translateY(-2px);
+	}
+	.footer__promo-arrow {
+		height: 15px;
+		width: 15px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		opacity: 0.8;
+	}
+	.footer__promo-item--soon {
+		background: transparent;
+		border-style: dashed;
+		border-color: rgba(255, 122, 0, 0.45);
+		color: #94a3b8;
 		cursor: default;
+	}
+	.footer__promo-item--soon:hover {
+		transform: none;
+		background: transparent;
+		border-color: rgba(255, 122, 0, 0.45);
+		color: #94a3b8;
 	}
 	.footer__soon {
 		margin-left: 0.45rem;
