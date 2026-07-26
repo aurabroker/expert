@@ -17,12 +17,19 @@
 		<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 			{#each services as service, i}
 				<article class="service-card reveal" style="transition-delay:{i * 100}ms">
-					<div class="service-card__icon">
-						<Icon name={service.icon} class="h-7 w-7" />
-					</div>
-					<span class="service-card__tag">{service.tag}</span>
-					<h3 class="mt-3 text-xl font-bold text-white">{service.title}</h3>
-					<p class="mt-1 text-sm font-medium text-cyan-light">{service.subtitle}</p>
+					{#if service.logo}
+						<span class="service-card__logo">
+							<img src={service.logo} alt={service.title} height="26" loading="lazy" decoding="async" />
+						</span>
+						<p class="mt-4 text-sm font-medium text-cyan-light">{service.subtitle}</p>
+					{:else}
+						<div class="service-card__icon">
+							<Icon name={service.icon} class="h-7 w-7" />
+						</div>
+						<span class="service-card__tag">{service.tag}</span>
+						<h3 class="mt-3 text-xl font-bold text-white">{service.title}</h3>
+						<p class="mt-1 text-sm font-medium text-cyan-light">{service.subtitle}</p>
+					{/if}
 					<p class="mt-4 text-sm leading-relaxed text-slate-300">{service.description}</p>
 
 					<ul class="mt-6 space-y-2.5">
@@ -88,6 +95,20 @@
 		background: rgba(28, 157, 215, 0.12);
 		border: 1px solid rgba(28, 157, 215, 0.25);
 		color: #4fb9e8;
+	}
+	.service-card__logo {
+		display: inline-flex;
+		align-items: center;
+		align-self: flex-start;
+		background: #ffffff;
+		border-radius: 14px;
+		padding: 0.75rem 1rem;
+		box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.45);
+	}
+	.service-card__logo img {
+		height: 26px;
+		width: auto;
+		display: block;
 	}
 	.service-card__tag {
 		margin-top: 1.25rem;

@@ -127,6 +127,7 @@ export const services = [
 		title: 'BeautyPolisa',
 		subtitle: 'Ochrona salonów i gabinetów',
 		icon: 'sparkle',
+		logo: '/images/beautypolisa.png',
 		description:
 			'Dedykowana ochrona dla salonów kosmetycznych, studiów tatuażu, barberów i gabinetów SPA — od OC za szkody klientom po sprzęt i lokal.',
 		points: [
