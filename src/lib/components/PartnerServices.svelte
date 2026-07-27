@@ -17,10 +17,12 @@
 			{#each externalServices as s, i}
 				{#if s.soon}
 					<div class="ps-card ps-card--soon reveal" style="transition-delay:{i * 90}ms">
-						<span class="ps-icon ps-icon--{s.kind}"><img src={s.img} alt="" loading="lazy" /></span>
-						<span class="ps-label">{s.label}</span>
-						<span class="ps-desc">{s.desc}</span>
-						<span class="ps-soon">wkrótce</span>
+						<span class="ps-media ps-media--{s.kind}"><img src={s.img} alt={s.label} loading="lazy" /></span>
+						<span class="ps-body">
+							<span class="ps-label">{s.label}</span>
+							<span class="ps-desc">{s.desc}</span>
+							<span class="ps-soon">wkrótce</span>
+						</span>
 					</div>
 				{:else}
 					<a
@@ -30,10 +32,12 @@
 						class="ps-card reveal"
 						style="transition-delay:{i * 90}ms"
 					>
-						<span class="ps-icon ps-icon--{s.kind}"><img src={s.img} alt="" loading="lazy" /></span>
-						<span class="ps-label">{s.label}</span>
-						<span class="ps-desc">{s.desc}</span>
-						<span class="ps-more">Przejdź do serwisu <Icon name="arrow" class="h-4 w-4" /></span>
+						<span class="ps-media ps-media--{s.kind}"><img src={s.img} alt={s.label} loading="lazy" /></span>
+						<span class="ps-body">
+							<span class="ps-label">{s.label}</span>
+							<span class="ps-desc">{s.desc}</span>
+							<span class="ps-more">Przejdź do serwisu <Icon name="arrow" class="h-4 w-4" /></span>
+						</span>
 					</a>
 				{/if}
 			{/each}
@@ -45,11 +49,10 @@
 	.ps-card {
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
 		border-radius: 20px;
 		border: 1px solid rgba(15, 36, 56, 0.09);
 		background: #ffffff;
-		padding: 1.75rem;
+		overflow: hidden;
 		box-shadow: 0 10px 40px -26px rgba(15, 36, 56, 0.4);
 		transition:
 			transform 0.28s ease,
@@ -61,40 +64,44 @@
 		border-color: rgba(28, 157, 215, 0.4);
 		box-shadow: 0 26px 60px -30px rgba(15, 36, 56, 0.45);
 	}
-	.ps-icon {
+
+	/* Górny pas media — na całej szerokości boxa */
+	.ps-media {
 		display: grid;
 		place-items: center;
-		height: 64px;
-		width: 64px;
-		border-radius: 16px;
-		overflow: hidden;
+		width: 100%;
+		height: 160px;
 	}
-	.ps-icon img {
-		display: block;
+	/* Fasetkowe "U" na granatowym tle — duże, wypełnia box */
+	.ps-media--facet {
+		background: linear-gradient(160deg, #1e3a4c 0%, #0f2438 100%);
 	}
-	/* Fasetkowe ikony na granatowym chipie (błękit się przebija) */
-	.ps-icon--facet {
-		background: linear-gradient(160deg, #1e3a4c, #0f2438);
-	}
-	.ps-icon--facet img {
-		height: 40px;
-		width: 40px;
+	.ps-media--facet img {
+		height: 128px;
+		width: auto;
 		object-fit: contain;
+		filter: drop-shadow(0 10px 22px rgba(28, 157, 215, 0.3));
 	}
-	/* Logotypy na białym chipie */
-	.ps-icon--logo {
+	/* Logotypy na białym tle — większe */
+	.ps-media--logo {
 		background: #ffffff;
-		border: 1px solid rgba(15, 36, 56, 0.1);
-		padding: 0.5rem 0.6rem;
+		border-bottom: 1px solid rgba(15, 36, 56, 0.08);
+		padding: 1rem 1.5rem;
 	}
-	.ps-icon--logo img {
-		max-height: 34px;
-		max-width: 100%;
+	.ps-media--logo img {
+		max-height: 66px;
+		max-width: 82%;
 		width: auto;
 		object-fit: contain;
 	}
+
+	.ps-body {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 1.5rem 1.75rem 1.75rem;
+	}
 	.ps-label {
-		margin-top: 1.1rem;
 		font-family: 'Sora', sans-serif;
 		font-size: 1.05rem;
 		font-weight: 700;
@@ -120,7 +127,7 @@
 		gap: 0.7rem;
 	}
 	.ps-card--soon {
-		opacity: 0.9;
+		opacity: 0.92;
 	}
 	.ps-soon {
 		margin-top: 1.1rem;

@@ -43,7 +43,7 @@ export const nav = [
 export const externalServices = [
 	{
 		label: 'utratadochodu.pl',
-		desc: 'Ochrona dochodu przedsiębiorców',
+		desc: 'Ochrona dochodu dla wolnych zawodów',
 		href: 'https://utratadochodu.pl',
 		img: '/images/services/utratadochodu.png',
 		kind: 'facet'
