@@ -97,7 +97,7 @@ export const heroSlides = [
 		subtitle:
 			'Decyzje biznesowe nie mogą zagrażać majątkowi członków zarządu. Polisa D&O bierze to ryzyko na siebie.',
 		href: '/ubezpieczenia/d-o',
-		image: 'https://picsum.photos/seed/aura-do/900/1100'
+		video: '/do.mp4'
 	},
 	{
 		tag: 'OC zawodowe',
@@ -105,7 +105,7 @@ export const heroSlides = [
 		subtitle:
 			'Jedno niedopatrzenie potrafi kosztować fortunę. OC zawodowe pokrywa roszczenia klientów i koszty obrony.',
 		href: '/ubezpieczenia/oc-zawodowe',
-		image: 'https://picsum.photos/seed/aura-oc/900/1100'
+		video: '/zawod.mp4'
 	},
 	{
 		tag: 'Ubezpieczenie Cyber',
@@ -113,7 +113,7 @@ export const heroSlides = [
 		subtitle:
 			'Ransomware, wyciek danych czy przerwa w działaniu — ochrona cyber stawia firmę na nogi w kilka godzin.',
 		href: '/ubezpieczenia/cyber',
-		image: 'https://picsum.photos/seed/aura-cyber/900/1100'
+		video: '/cyber.mp4'
 	},
 	{
 		tag: 'Ochrona Podatkowa',
@@ -121,7 +121,7 @@ export const heroSlides = [
 		subtitle:
 			'Pokrywamy koszty postępowań i profesjonalnej reprezentacji przed organami — bez uszczerbku dla płynności.',
 		href: '/ubezpieczenia/ochrona-podatkowa',
-		image: 'https://picsum.photos/seed/aura-tax/900/1100'
+		video: '/tax.mp4'
 	},
 	{
 		tag: 'BeautyPolisa',
@@ -129,7 +129,7 @@ export const heroSlides = [
 		subtitle:
 			'Salon, sprzęt, klienci i zabiegi — jeden pakiet skrojony pod kosmetykę, tatuaż, barber i SPA.',
 		href: '/ubezpieczenia/beautypolisa',
-		image: 'https://picsum.photos/seed/aura-beauty/900/1100'
+		video: '/beauty.mp4'
 	},
 	{
 		tag: 'Ubezpieczenia grupowe',
@@ -137,7 +137,7 @@ export const heroSlides = [
 		subtitle:
 			'Grupowe ubezpieczenia na życie i zdrowie — benefit, który realnie buduje lojalność pracowników.',
 		href: '/ubezpieczenia/ubezpieczenia-grupowe',
-		image: 'https://picsum.photos/seed/aura-grupowe/900/1100'
+		video: '/group.mp4'
 	}
 ];
 

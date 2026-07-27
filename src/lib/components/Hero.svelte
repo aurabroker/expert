@@ -102,19 +102,35 @@
 		<div class="hero__visual">
 			<div class="hero__frame">
 				<div class="hero__frame-fallback"><Facets tone="cyan" /></div>
-				<picture>
-					<source srcset="/images/hero.webp" type="image/webp" />
-					<img
-						class="hero__img"
-						src="/images/hero.jpg"
-						alt="Doradca ubezpieczeniowy Aura Expert"
-						width="1100"
-						height="1380"
-						loading="eager"
-						fetchpriority="high"
-						onerror={(e) => (e.currentTarget.style.display = 'none')}
-					/>
-				</picture>
+				{#key current}
+					{#if slide.video}
+						<video
+							class="hero__img"
+							src={slide.video}
+							poster="/images/hero.jpg"
+							autoplay
+							muted
+							loop
+							playsinline
+							preload="auto"
+							aria-label={slide.tag}
+						></video>
+					{:else}
+						<picture>
+							<source srcset="/images/hero.webp" type="image/webp" />
+							<img
+								class="hero__img"
+								src="/images/hero.jpg"
+								alt="Doradca ubezpieczeniowy Aura Expert"
+								width="1100"
+								height="1380"
+								loading="eager"
+								fetchpriority="high"
+								onerror={(e) => (e.currentTarget.style.display = 'none')}
+							/>
+						</picture>
+					{/if}
+				{/key}
 			</div>
 
 			<div class="hero__badge hero__badge--top">
@@ -255,7 +271,8 @@
 		background: linear-gradient(135deg, #1e3a4c, #0f2438);
 		aspect-ratio: 4 / 5;
 	}
-	.hero__frame picture {
+	.hero__frame picture,
+	.hero__frame video {
 		position: relative;
 		z-index: 1;
 		display: block;
@@ -267,6 +284,9 @@
 		height: 100%;
 		width: 100%;
 		object-fit: cover;
+	}
+	video.hero__img {
+		background: #0f2438;
 	}
 	.hero__frame-fallback {
 		position: absolute;
