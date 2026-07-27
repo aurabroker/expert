@@ -129,7 +129,8 @@ export const heroSlides = [
 		subtitle:
 			'Salon, sprzęt, klienci i zabiegi — jeden pakiet skrojony pod kosmetykę, tatuaż, barber i SPA.',
 		href: '/ubezpieczenia/beautypolisa',
-		video: '/beauty.mp4'
+		video: '/beauty.mp4',
+		logo: '/images/beautypolisa.png'
 	},
 	{
 		tag: 'Ubezpieczenia grupowe',

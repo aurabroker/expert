@@ -2,8 +2,7 @@
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import Icon from './Icon.svelte';
-	import Facets from './Facets.svelte';
-	import { hero, heroSlides } from '$data/content.js';
+	import { heroSlides } from '$data/content.js';
 
 	const INTERVAL = 6000;
 	let current = $state(0);
@@ -35,36 +34,58 @@
 	onmouseenter={() => (paused = true)}
 	onmouseleave={() => (paused = false)}
 >
-	<div class="hero__bg" aria-hidden="true"></div>
-	<div class="hero__facets" aria-hidden="true"><Facets tone="blue" /></div>
+	<div class="hero__media" aria-hidden="true">
+		{#key current}
+			{#if slide.video}
+				<video
+					class="hero__video"
+					src={slide.video}
+					poster="/images/hero.jpg"
+					autoplay
+					muted
+					loop
+					playsinline
+					preload="auto"
+				></video>
+			{:else}
+				<picture>
+					<source srcset="/images/hero.webp" type="image/webp" />
+					<img
+						class="hero__video"
+						src="/images/hero.jpg"
+						alt=""
+						loading="eager"
+						fetchpriority="high"
+					/>
+				</picture>
+			{/if}
+		{/key}
+		<div class="hero__scrim"></div>
+	</div>
 
-	<div
-		class="container-x relative grid items-center gap-12 pt-32 pb-16 md:pt-40 md:pb-24 lg:grid-cols-[1.05fr_0.95fr]"
-	>
-		<div class="max-w-xl">
-			<div class="hero__text" aria-live="polite">
-				{#key current}
-					<div in:fade={{ duration: 450 }}>
-						<p class="eyebrow">
+	<div class="container-x hero__inner">
+		<div class="hero__text" aria-live="polite">
+			{#key current}
+				<div in:fade={{ duration: 450 }}>
+					{#if slide.logo}
+						<span class="hero__brand"><img src={slide.logo} alt={slide.tag} /></span>
+					{:else}
+						<p class="eyebrow hero__eyebrow">
 							<span class="h-px w-6 bg-cyan"></span>
 							{slide.tag}
 						</p>
-						<h1
-							class="mt-5 text-[2.1rem] font-extrabold leading-[1.1] text-navy sm:text-5xl lg:text-[3.3rem]"
-						>
-							{slide.title}
-						</h1>
-						<p class="mt-6 text-lg leading-relaxed text-muted">{slide.subtitle}</p>
-						<div class="mt-9 flex flex-wrap gap-4">
-							<a href={slide.href} class="btn-primary">
-								Dowiedz się więcej
-								<Icon name="arrow" class="h-4 w-4" />
-							</a>
-							<a href="/#kontakt" class="btn-outline">Zamów analizę ryzyka</a>
-						</div>
+					{/if}
+					<h1 class="hero__title">{slide.title}</h1>
+					<p class="hero__subtitle">{slide.subtitle}</p>
+					<div class="mt-9 flex flex-wrap gap-4">
+						<a href={slide.href} class="btn hero__cta hero__cta--solid">
+							Dowiedz się więcej
+							<Icon name="arrow" class="h-4 w-4" />
+						</a>
+						<a href="/#kontakt" class="btn hero__cta hero__cta--ghost">Zamów analizę ryzyka</a>
 					</div>
-				{/key}
-			</div>
+				</div>
+			{/key}
 
 			<div class="hero__controls">
 				<div class="hero__dots" role="tablist" aria-label="Wybór slajdu">
@@ -88,68 +109,6 @@
 					</button>
 				</div>
 			</div>
-
-			<dl class="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-navy/10 pt-8">
-				{#each hero.stats as stat}
-					<div>
-						<dt class="font-display text-3xl font-bold text-navy">{stat.value}</dt>
-						<dd class="mt-1 text-xs font-medium uppercase tracking-wide text-muted">{stat.label}</dd>
-					</div>
-				{/each}
-			</dl>
-		</div>
-
-		<div class="hero__visual">
-			<div class="hero__frame">
-				<div class="hero__frame-fallback"><Facets tone="cyan" /></div>
-				{#key current}
-					{#if slide.video}
-						<video
-							class="hero__img"
-							src={slide.video}
-							poster="/images/hero.jpg"
-							autoplay
-							muted
-							loop
-							playsinline
-							preload="auto"
-							aria-label={slide.tag}
-						></video>
-					{:else}
-						<picture>
-							<source srcset="/images/hero.webp" type="image/webp" />
-							<img
-								class="hero__img"
-								src="/images/hero.jpg"
-								alt="Doradca ubezpieczeniowy Aura Expert"
-								width="1100"
-								height="1380"
-								loading="eager"
-								fetchpriority="high"
-								onerror={(e) => (e.currentTarget.style.display = 'none')}
-							/>
-						</picture>
-					{/if}
-				{/key}
-			</div>
-
-			<div class="hero__badge hero__badge--top">
-				<span class="hero__badge-dot"></span>
-				<div>
-					<p class="text-xs font-semibold text-navy">Analiza ryzyka</p>
-					<p class="text-[0.7rem] text-muted">gotowa w 48h</p>
-				</div>
-			</div>
-
-			<div class="hero__badge hero__badge--bottom">
-				<div class="hero__badge-icon">
-					<Icon name="shield" class="h-5 w-5 text-cyan" />
-				</div>
-				<div>
-					<p class="font-display text-xl font-bold leading-none text-navy">98%</p>
-					<p class="text-[0.7rem] text-muted">skuteczność roszczeń</p>
-				</div>
-			</div>
 		</div>
 	</div>
 </section>
@@ -157,60 +116,121 @@
 <style>
 	.hero {
 		position: relative;
+		display: flex;
+		align-items: center;
 		overflow: hidden;
+		min-height: clamp(600px, 92vh, 900px);
+		background: #091726;
 	}
-	.hero__bg {
+
+	/* Wideo na całą szerokość — tło */
+	.hero__media {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+	}
+	.hero__video {
+		position: absolute;
+		inset: 0;
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+	}
+	.hero__media picture {
+		display: block;
+		height: 100%;
+		width: 100%;
+	}
+	.hero__scrim {
 		position: absolute;
 		inset: 0;
 		background:
-			radial-gradient(60% 55% at 85% 8%, rgba(28, 157, 215, 0.14), transparent 70%),
-			radial-gradient(50% 50% at 8% 30%, rgba(28, 157, 215, 0.08), transparent 70%),
-			linear-gradient(180deg, #f4f9fc 0%, #ffffff 60%);
-	}
-	.hero__facets {
-		position: absolute;
-		top: -70px;
-		right: -80px;
-		width: 480px;
-		max-width: 55vw;
-		opacity: 0.5;
-		filter: drop-shadow(0 20px 40px rgba(28, 157, 215, 0.15));
-		z-index: 0;
-	}
-	@media (max-width: 1024px) {
-		.hero__facets {
-			opacity: 0.28;
-			top: -50px;
-			right: -110px;
-		}
-	}
-	.hero__bg::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background-image:
-			linear-gradient(rgba(15, 36, 56, 0.04) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(15, 36, 56, 0.04) 1px, transparent 1px);
-		background-size: 44px 44px;
-		mask-image: radial-gradient(70% 60% at 70% 20%, #000 0%, transparent 75%);
+			linear-gradient(
+				90deg,
+				rgba(9, 23, 38, 0.92) 0%,
+				rgba(9, 23, 38, 0.74) 34%,
+				rgba(9, 23, 38, 0.4) 66%,
+				rgba(9, 23, 38, 0.18) 100%
+			),
+			linear-gradient(0deg, rgba(9, 23, 38, 0.6) 0%, transparent 42%);
 	}
 
-	.hero__text {
+	.hero__inner {
 		position: relative;
+		z-index: 2;
+		width: 100%;
+		padding-top: calc(var(--nav-h) + 2rem);
+		padding-bottom: 3.5rem;
 	}
-	@media (min-width: 1024px) {
-		.hero__text {
-			min-height: 22rem;
-		}
+	.hero__text {
+		max-width: 40rem;
+	}
+
+	/* Logo BeautyPolisa (biały „chip", czytelny na wideo) */
+	.hero__brand {
+		display: inline-flex;
+		align-items: center;
+		background: #ffffff;
+		border-radius: 14px;
+		padding: 0.55rem 1.05rem;
+		box-shadow: 0 14px 34px -16px rgba(0, 0, 0, 0.6);
+	}
+	.hero__brand img {
+		height: 34px;
+		width: auto;
+		object-fit: contain;
+	}
+
+	.hero__eyebrow {
+		color: #7fd6f7;
+	}
+
+	.hero__title {
+		margin-top: 1.4rem;
+		font-family: 'Sora', sans-serif;
+		font-weight: 800;
+		line-height: 1.08;
+		letter-spacing: -0.02em;
+		color: #ffffff;
+		font-size: clamp(2.15rem, 5.2vw, 3.6rem);
+		text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+	}
+	.hero__subtitle {
+		margin-top: 1.5rem;
+		max-width: 34rem;
+		font-size: 1.125rem;
+		line-height: 1.65;
+		color: rgba(255, 255, 255, 0.82);
+	}
+
+	/* Przyciski nad wideo */
+	.hero__cta {
+		border-radius: 999px;
+	}
+	.hero__cta--solid {
+		background: #ffffff;
+		color: #0f2438;
+		box-shadow: 0 16px 40px -18px rgba(0, 0, 0, 0.55);
+	}
+	.hero__cta--solid:hover {
+		background: #eaf6fc;
+		transform: translateY(-2px);
+	}
+	.hero__cta--ghost {
+		border: 1px solid rgba(255, 255, 255, 0.4);
+		color: #ffffff;
+		background: rgba(255, 255, 255, 0.06);
+	}
+	.hero__cta--ghost:hover {
+		background: #ffffff;
+		color: #0f2438;
 	}
 
 	.hero__controls {
-		margin-top: 1.75rem;
+		margin-top: 2.5rem;
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-		max-width: 28rem;
+		gap: 1.5rem;
 	}
 	.hero__dots {
 		display: flex;
@@ -221,13 +241,13 @@
 		height: 8px;
 		width: 8px;
 		border-radius: 999px;
-		background: rgba(15, 36, 56, 0.2);
+		background: rgba(255, 255, 255, 0.35);
 		transition:
 			width 0.3s ease,
 			background 0.3s ease;
 	}
 	.hero__dot:hover {
-		background: rgba(15, 36, 56, 0.4);
+		background: rgba(255, 255, 255, 0.6);
 	}
 	.hero__dot.is-active {
 		width: 26px;
@@ -240,105 +260,19 @@
 	.hero__arrow {
 		display: grid;
 		place-items: center;
-		height: 38px;
-		width: 38px;
+		height: 40px;
+		width: 40px;
 		border-radius: 999px;
-		border: 1px solid rgba(15, 36, 56, 0.15);
-		color: #0f2438;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		color: #ffffff;
 		transition:
 			background 0.2s ease,
 			border-color 0.2s ease,
 			color 0.2s ease;
 	}
 	.hero__arrow:hover {
-		background: #0f2438;
-		border-color: #0f2438;
-		color: #ffffff;
-	}
-
-	.hero__visual {
-		position: relative;
-		margin-inline: auto;
-		width: 100%;
-		max-width: 460px;
-	}
-	.hero__frame {
-		position: relative;
-		width: 100%;
-		border-radius: 26px;
-		overflow: hidden;
-		box-shadow: 0 40px 80px -40px rgba(15, 36, 56, 0.55);
-		background: linear-gradient(135deg, #1e3a4c, #0f2438);
-		aspect-ratio: 4 / 5;
-	}
-	.hero__frame picture,
-	.hero__frame video {
-		position: relative;
-		z-index: 1;
-		display: block;
-		height: 100%;
-		width: 100%;
-	}
-	.hero__img {
-		display: block;
-		height: 100%;
-		width: 100%;
-		object-fit: cover;
-	}
-	video.hero__img {
-		background: #0f2438;
-	}
-	.hero__frame-fallback {
-		position: absolute;
-		inset: 0;
-		display: grid;
-		place-items: center;
-		opacity: 0.45;
-	}
-	.hero__frame-fallback :global(.facets) {
-		width: 62%;
-	}
-	.hero__badge {
-		position: absolute;
-		z-index: 2;
-		display: flex;
-		align-items: center;
-		gap: 0.65rem;
-		background: rgba(255, 255, 255, 0.95);
-		backdrop-filter: blur(8px);
-		border-radius: 16px;
-		padding: 0.7rem 0.95rem;
-		box-shadow: 0 16px 40px -18px rgba(15, 36, 56, 0.45);
-	}
-	.hero__badge--top {
-		top: 1.4rem;
-		left: -1.4rem;
-	}
-	.hero__badge--bottom {
-		bottom: 1.6rem;
-		right: -1.3rem;
-	}
-	.hero__badge-dot {
-		height: 10px;
-		width: 10px;
-		border-radius: 50%;
-		background: #16a34a;
-		box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.15);
-	}
-	.hero__badge-icon {
-		display: grid;
-		place-items: center;
-		height: 40px;
-		width: 40px;
-		border-radius: 12px;
-		background: rgba(28, 157, 215, 0.1);
-	}
-	@media (max-width: 640px) {
-		.hero__badge--top {
-			left: 0.4rem;
-		}
-		.hero__badge--bottom {
-			right: 0.4rem;
-		}
+		background: #ffffff;
+		border-color: #ffffff;
+		color: #0f2438;
 	}
 </style>
