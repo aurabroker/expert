@@ -91,6 +91,12 @@ export const hero = {
 	]
 };
 
+// Partnerzy (zakłady ubezpieczeń) — wyświetlani jako „we współpracy z [logo] nazwa".
+const colonnade = {
+	name: 'Colonnade Insurance S.A. Oddział w Polsce',
+	logo: '/images/partners/colonnade.svg'
+};
+
 // Slajdy karuzeli Hero — każdy dotyczy innego ubezpieczenia.
 // `image` to na razie losowy placeholder; docelowo można podmienić na `video`.
 export const heroSlides = [
@@ -125,7 +131,7 @@ export const heroSlides = [
 			'Pokrywamy koszty postępowań i profesjonalnej reprezentacji przed organami — bez uszczerbku dla płynności.',
 		href: '/ubezpieczenia/ochrona-podatkowa',
 		video: '/tax.mp4',
-		partner: 'Colonnade Insurance Société Anonyme Oddział w Polsce'
+		partner: colonnade
 	},
 	{
 		tag: 'BeautyPolisa',
@@ -209,7 +215,7 @@ export const services = [
 		title: 'Ochrona Podatkowa',
 		subtitle: 'Bezpieczeństwo finansów firmy',
 		// Wyświetlane jako „we współpracy z …" (karta usługi, slajd Hero, podstrona).
-		partner: 'Colonnade Insurance Société Anonyme Oddział w Polsce',
+		partner: colonnade,
 		icon: 'tax',
 		description:
 			'Zabezpieczenie firmy na wypadek kontroli i sporów podatkowych — pokrycie kosztów doradztwa, reprezentacji i postępowań.',

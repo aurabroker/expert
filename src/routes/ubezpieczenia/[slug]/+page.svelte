@@ -4,6 +4,7 @@
 	import Icon from '$components/Icon.svelte';
 	import Facets from '$components/Facets.svelte';
 	import PartnerServices from '$components/PartnerServices.svelte';
+	import PartnerBadge from '$components/PartnerBadge.svelte';
 	import { site } from '$data/content.js';
 
 	let { data } = $props();
@@ -69,7 +70,7 @@
 					{/if}
 					<h1 class="svc-hero__title">{service.title}</h1>
 					{#if service.partner}
-						<p class="svc-hero__partner">we współpracy z <strong>{service.partner}</strong></p>
+						<div class="svc-hero__partner"><PartnerBadge partner={service.partner} /></div>
 					{/if}
 					<p class="svc-hero__lead">{detail?.lead ?? service.description}</p>
 					<div class="svc-hero__ctas">
@@ -234,13 +235,7 @@
 		z-index: 1;
 	}
 	.svc-hero__partner {
-		margin-top: 0.75rem;
-		font-size: 1rem;
-		color: #cbd5e1;
-	}
-	.svc-hero__partner strong {
-		color: #ffffff;
-		font-weight: 700;
+		margin-top: 1rem;
 	}
 	.svc-hero__facets {
 		position: absolute;

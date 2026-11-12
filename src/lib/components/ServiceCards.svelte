@@ -1,5 +1,6 @@
 <script>
 	import Icon from './Icon.svelte';
+	import PartnerBadge from './PartnerBadge.svelte';
 	import { services } from '$data/content.js';
 </script>
 
@@ -43,9 +44,7 @@
 						<p class="mt-1 text-sm font-medium text-cyan-light">{service.subtitle}</p>
 					{/if}
 					{#if service.partner}
-						<p class="mt-2 text-xs leading-relaxed text-slate-400">
-							we współpracy z <strong class="font-semibold text-white">{service.partner}</strong>
-						</p>
+						<div class="mt-3"><PartnerBadge partner={service.partner} size="sm" /></div>
 					{/if}
 					<p class="mt-4 text-sm leading-relaxed text-slate-300">{service.description}</p>
 

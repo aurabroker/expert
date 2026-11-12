@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import Icon from './Icon.svelte';
+	import PartnerBadge from './PartnerBadge.svelte';
 	import { heroSlides } from '$data/content.js';
 
 	const INTERVAL = 6000;
@@ -76,7 +77,7 @@
 						</p>
 					{/if}
 					{#if slide.partner}
-						<p class="hero__partner">we współpracy z <strong>{slide.partner}</strong></p>
+						<div class="hero__partner"><PartnerBadge partner={slide.partner} /></div>
 					{/if}
 					<h1 class="hero__title">{slide.title}</h1>
 					<p class="hero__subtitle">{slide.subtitle}</p>
@@ -188,13 +189,7 @@
 		color: #7fd6f7;
 	}
 	.hero__partner {
-		margin-top: 0.6rem;
-		font-size: 0.9rem;
-		color: rgba(255, 255, 255, 0.78);
-	}
-	.hero__partner strong {
-		color: #ffffff;
-		font-weight: 700;
+		margin-top: 0.9rem;
 	}
 
 	.hero__title {
