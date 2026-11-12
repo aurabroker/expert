@@ -7,7 +7,9 @@
 	let phone = $state('');
 	let message = $state('');
 	let consent = $state(false);
-	let company = $state(''); // honeypot — musi zostać pusty
+	// Honeypot — musi zostać pusty. Celowo bez etykiety typu „Firma”/„Company”:
+	// autouzupełnianie przeglądarki wypełniało takie pole i zgłoszenie było odrzucane jako bot.
+	let hp = $state('');
 
 	/** @type {'idle' | 'sending' | 'success' | 'error'} */
 	let status = $state('idle');
@@ -34,7 +36,7 @@
 			const res = await fetch('/api/contact', {
 				method: 'POST',
 				headers: { 'content-type': 'application/json' },
-				body: JSON.stringify({ name, email, phone, message, consent, company })
+				body: JSON.stringify({ name, email, phone, message, consent, hp })
 			});
 			const data = await res.json().catch(() => ({}));
 			if (!res.ok || !data.ok) {
@@ -62,10 +64,6 @@
 				</p>
 
 				<ul class="mt-8 space-y-4">
-					<li class="contact-item">
-						<span class="contact-item__icon"><Icon name="mail" class="h-5 w-5 text-cyan" /></span>
-						<a href="mailto:{site.email}">{site.email}</a>
-					</li>
 					<li class="contact-item">
 						<span class="contact-item__icon"><Icon name="phone" class="h-5 w-5 text-cyan" /></span>
 						<a href="tel:{site.phoneHref}">{site.phone}</a>
@@ -114,7 +112,7 @@
 
 						<!-- honeypot -->
 						<label class="hp" aria-hidden="true">
-							Firma<input type="text" tabindex="-1" autocomplete="off" bind:value={company} />
+							Nie wypełniaj tego pola<input type="text" tabindex="-1" autocomplete="off" bind:value={hp} />
 						</label>
 
 						<label class="form-consent">

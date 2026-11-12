@@ -59,7 +59,7 @@
 			<div>
 				<h3 class="footer__heading">Kontakt</h3>
 				<ul class="mt-4 space-y-2.5 text-sm text-slate-400">
-					<li><a href="mailto:{site.email}" class="footer__link">{site.email}</a></li>
+					<li><a href="/#kontakt" class="footer__link">Formularz kontaktowy</a></li>
 					<li><a href="tel:{site.phoneHref}" class="footer__link">{site.phone}</a></li>
 				</ul>
 			</div>

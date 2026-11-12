@@ -7,7 +7,7 @@ export const site = {
 	description:
 		'Specjalistyczne rozwiązania ubezpieczeniowe dla firm. Ochrona dyrektorów (D&O), danych (Cyber) i finansów (TAX) przed współczesnymi zagrożeniami.',
 	url: 'https://auraexpert.pl',
-	email: 'zarzad@auraexpert.pl',
+	// Brak publicznego adresu e-mail — kontakt wyłącznie przez formularz (#kontakt) i telefon.
 	phone: '+48 504 400 901',
 	phoneHref: '+48504400901',
 	location: 'Warszawa',

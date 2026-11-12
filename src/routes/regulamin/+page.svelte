@@ -5,7 +5,7 @@
 
 <LegalPage
 	title="Regulamin serwisu"
-	updated="25 lipca 2026"
+	updated="12 listopada 2026"
 	description="Regulamin korzystania z serwisu internetowego Aura Expert sp. z o.o."
 >
 	<h2>§1. Postanowienia ogólne</h2>
@@ -64,9 +64,10 @@
 
 	<h2>§8. Reklamacje</h2>
 	<p>
-		Reklamacje dotyczące działania Serwisu można składać na adres
-		<a href="mailto:{site.email}">{site.email}</a>. Reklamacja powinna zawierać opis sprawy oraz dane
-		kontaktowe. Odpowiedź udzielana jest bez zbędnej zwłoki, nie później niż w terminie 30 dni.
+		Reklamacje dotyczące działania Serwisu można składać za pośrednictwem
+		<a href="/#kontakt">formularza kontaktowego</a>, telefonicznie pod numerem
+		<a href="tel:{site.phoneHref}">{site.phone}</a> lub pisemnie na adres siedziby: {company.address}.
+		Reklamacja powinna zawierać opis sprawy oraz dane kontaktowe. Odpowiedź udzielana jest bez zbędnej zwłoki, nie później niż w terminie 30 dni.
 	</p>
 
 	<h2>§9. Dane osobowe</h2>

@@ -22,7 +22,7 @@
 		pod numerem KRS {company.krs}, NIP {company.nip}, REGON {company.regon}.
 	</p>
 	<p>
-		Kontakt z administratorem: e-mail <a href="mailto:{site.email}">{site.email}</a>, tel.
+		Kontakt z administratorem: <a href="/#kontakt">formularz kontaktowy</a>, tel.
 		<a href="tel:{site.phoneHref}">{site.phone}</a>.
 	</p>
 
@@ -112,8 +112,8 @@
 
 	<h2>10. Kontakt</h2>
 	<p>
-		W sprawach dotyczących ochrony danych osobowych prosimy o kontakt na adres
-		<a href="mailto:{site.email}">{site.email}</a>. Szczegółową klauzulę informacyjną znajdą Państwo na
-		stronie <a href="/rodo">RODO</a>.
+		W sprawach dotyczących ochrony danych osobowych prosimy o kontakt za pośrednictwem
+		<a href="/#kontakt">formularza kontaktowego</a>. Szczegółową klauzulę informacyjną, w tym dane
+		kontaktowe Inspektora Ochrony Danych, znajdą Państwo na stronie <a href="/rodo">RODO</a>.
 	</p>
 </LegalPage>

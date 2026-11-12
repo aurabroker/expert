@@ -1,5 +1,6 @@
 import { json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
+import { site } from '$data/content.js';
 
 export const prerender = false;
 
@@ -30,10 +31,11 @@ export async function POST({ request }) {
 	const phone = String(body.phone ?? '').trim();
 	const message = String(body.message ?? '').trim();
 	const consent = body.consent === true;
-	const honeypot = String(body.company ?? '').trim();
+	const honeypot = String(body.hp ?? '').trim();
 
-	// Bot złapany w honeypot — udajemy sukces, nie wysyłamy.
+	// Bot złapany w honeypot — udajemy sukces, nie wysyłamy (ślad w logach serwera).
 	if (honeypot) {
+		console.warn('[contact] Honeypot wypełniony — zgłoszenie odrzucone jako bot.');
 		return json({ ok: true });
 	}
 
@@ -58,7 +60,10 @@ export async function POST({ request }) {
 	if (!apiKey) {
 		console.error('[contact] Brak RESEND_API_KEY — wiadomość nie została wysłana.');
 		return json(
-			{ ok: false, error: 'Formularz jest chwilowo niedostępny. Napisz do nas na zarzad@auraexpert.pl.' },
+			{
+				ok: false,
+				error: `Formularz jest chwilowo niedostępny. Spróbuj ponownie za chwilę lub zadzwoń: ${site.phone}.`
+			},
 			{ status: 503 }
 		);
 	}
