@@ -34,6 +34,7 @@ Aplikacja: http://localhost:5173
 | `RESEND_API_KEY`     | Klucz API Resend do wysyłki e-maili                        | tak\*    |
 | `CONTACT_TO_EMAIL`   | Adres odbiorcy zgłoszeń (domyślnie `zarzad@auraexpert.pl`) | nie      |
 | `CONTACT_FROM_EMAIL` | Nadawca (domena zweryfikowana w Resend)                    | nie      |
+| `TURNSTILE_SECRET_KEY` | Sekret Cloudflare Turnstile (antyspam formularza); puste = weryfikacja pominięta | tak (produkcja) |
 | `PUBLIC_GA_ID`       | ID Google Analytics 4 (np. `G-XXXXXXXXXX`); puste = wył.   | nie      |
 
 \* Bez `RESEND_API_KEY` formularz zwróci komunikat o niedostępności, reszta strony działa normalnie.

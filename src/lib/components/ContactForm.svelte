@@ -1,6 +1,32 @@
+<script module>
+	/** @type {Promise<void> | undefined} */
+	let turnstileScript;
+
+	/** Ładuje skrypt Cloudflare Turnstile raz na stronę (tryb explicit — renderujemy sami). */
+	function loadTurnstile() {
+		if (/** @type {any} */ (window).turnstile) return Promise.resolve();
+		turnstileScript ??= new Promise((resolve, reject) => {
+			const s = document.createElement('script');
+			s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+			s.async = true;
+			s.onload = () => resolve();
+			s.onerror = () => {
+				turnstileScript = undefined;
+				reject(new Error('Turnstile script failed to load'));
+			};
+			document.head.appendChild(s);
+		});
+		return turnstileScript;
+	}
+</script>
+
 <script>
+	import { dev } from '$app/environment';
 	import Icon from './Icon.svelte';
 	import { site, rodoText } from '$data/content.js';
+
+	// Lokalnie używamy testowego klucza Turnstile (zawsze przechodzi) — produkcyjny działa tylko na domenie.
+	const turnstileSiteKey = dev ? '1x00000000000000000000AA' : site.turnstileSiteKey;
 
 	let name = $state('');
 	let email = $state('');
@@ -14,6 +40,49 @@
 	/** @type {'idle' | 'sending' | 'success' | 'error'} */
 	let status = $state('idle');
 	let errorMsg = $state('');
+
+	// Cloudflare Turnstile — token jest jednorazowy, odnawiamy go po każdej nieudanej próbie.
+	let turnstileToken = $state('');
+	let turnstileFailed = $state(false);
+	/** @type {string | undefined} */
+	let turnstileWidgetId;
+
+	/** Akcja Svelte: renderuje widget w kontenerze i sprząta go przy odmontowaniu formularza. */
+	function turnstile(/** @type {HTMLElement} */ node) {
+		let destroyed = false;
+		loadTurnstile()
+			.then(() => {
+				if (destroyed) return;
+				turnstileWidgetId = /** @type {any} */ (window).turnstile.render(node, {
+					sitekey: turnstileSiteKey,
+					language: 'pl',
+					size: node.clientWidth < 300 ? 'compact' : 'flexible',
+					callback: (/** @type {string} */ token) => {
+						turnstileToken = token;
+						turnstileFailed = false;
+					},
+					'expired-callback': () => (turnstileToken = ''),
+					'error-callback': () => {
+						turnstileToken = '';
+						turnstileFailed = true;
+					}
+				});
+			})
+			.catch(() => (turnstileFailed = true));
+		return {
+			destroy() {
+				destroyed = true;
+				if (turnstileWidgetId !== undefined) /** @type {any} */ (window).turnstile?.remove(turnstileWidgetId);
+				turnstileWidgetId = undefined;
+				turnstileToken = '';
+			}
+		};
+	}
+
+	function resetTurnstile() {
+		turnstileToken = '';
+		if (turnstileWidgetId !== undefined) /** @type {any} */ (window).turnstile?.reset(turnstileWidgetId);
+	}
 
 	async function handleSubmit(/** @type {SubmitEvent} */ e) {
 		e.preventDefault();
@@ -30,13 +99,20 @@
 			errorMsg = 'Prosimy o wyrażenie zgody na przetwarzanie danych.';
 			return;
 		}
+		if (!turnstileToken) {
+			status = 'error';
+			errorMsg = turnstileFailed
+				? `Nie udało się załadować weryfikacji antyspamowej. Odśwież stronę lub zadzwoń: ${site.phone}.`
+				: 'Trwa weryfikacja antyspamowa — poczekaj chwilę i wyślij ponownie.';
+			return;
+		}
 
 		status = 'sending';
 		try {
 			const res = await fetch('/api/contact', {
 				method: 'POST',
 				headers: { 'content-type': 'application/json' },
-				body: JSON.stringify({ name, email, phone, message, consent, hp })
+				body: JSON.stringify({ name, email, phone, message, consent, hp, turnstileToken })
 			});
 			const data = await res.json().catch(() => ({}));
 			if (!res.ok || !data.ok) {
@@ -48,6 +124,7 @@
 		} catch (err) {
 			status = 'error';
 			errorMsg = err instanceof Error ? err.message : 'Wystąpił błąd. Spróbuj ponownie.';
+			resetTurnstile();
 		}
 	}
 </script>
@@ -119,6 +196,8 @@
 							<input type="checkbox" bind:checked={consent} />
 							<span>{rodoText}</span>
 						</label>
+
+						<div class="form-turnstile" use:turnstile></div>
 
 						{#if status === 'error'}
 							<p class="form-error" role="alert">{errorMsg}</p>
@@ -245,6 +324,11 @@
 		width: 1.05rem;
 		flex: none;
 		accent-color: #1c9dd7;
+	}
+	.form-turnstile {
+		margin-top: 1rem;
+		min-height: 65px;
+		max-width: 100%;
 	}
 	.form-error {
 		margin-top: 0.9rem;

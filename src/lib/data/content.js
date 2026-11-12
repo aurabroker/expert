@@ -11,6 +11,9 @@ export const site = {
 	phone: '+48 504 400 901',
 	phoneHref: '+48504400901',
 	location: 'Warszawa',
+	// Cloudflare Turnstile (antyspam formularza) — klucz witryny jest publiczny.
+	// Sekret: zmienna TURNSTILE_SECRET_KEY w Cloudflare Pages.
+	turnstileSiteKey: '0x4AAAAAAF-MUPJeDBDVB3Yh',
 	// Google Analytics 4 — wpisz ID (np. 'G-XXXXXXXXXX'), puste = wyłączone.
 	// Stała build-time: strona pozostaje w pełni statyczna (bez fetchy w runtime).
 	gaId: ''

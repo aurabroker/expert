@@ -16,6 +16,34 @@ function escapeHtml(str) {
 		.replace(/'/g, '&#39;');
 }
 
+/**
+ * Weryfikuje token Cloudflare Turnstile.
+ * Awaria samego Turnstile (sieć) nie blokuje zgłoszenia — prawdziwy lead jest ważniejszy niż spam.
+ * @param {string} secret
+ * @param {string} token
+ * @param {string | null} ip
+ */
+async function verifyTurnstile(secret, token, ip) {
+	try {
+		const form = new FormData();
+		form.append('secret', secret);
+		form.append('response', token);
+		if (ip) form.append('remoteip', ip);
+		const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+			method: 'POST',
+			body: form
+		});
+		const data = await res.json();
+		if (data.success !== true) {
+			console.warn('[contact] Turnstile odrzucił token:', data['error-codes']);
+		}
+		return data.success === true;
+	} catch (err) {
+		console.error('[contact] Błąd połączenia z Turnstile — przepuszczam zgłoszenie:', err);
+		return true;
+	}
+}
+
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
 	/** @type {Record<string, unknown>} */
@@ -50,6 +78,21 @@ export async function POST({ request }) {
 	}
 	if (message.length > 5000) {
 		return json({ ok: false, error: 'Wiadomość jest zbyt długa.' }, { status: 400 });
+	}
+
+	// Cloudflare Turnstile — wymagany, gdy ustawiono TURNSTILE_SECRET_KEY (produkcja).
+	const turnstileSecret = env.TURNSTILE_SECRET_KEY;
+	if (turnstileSecret) {
+		const token = String(body.turnstileToken ?? '').trim();
+		const ok = token && (await verifyTurnstile(turnstileSecret, token, request.headers.get('cf-connecting-ip')));
+		if (!ok) {
+			return json(
+				{ ok: false, error: 'Weryfikacja antyspamowa nie powiodła się. Odśwież stronę i spróbuj ponownie.' },
+				{ status: 400 }
+			);
+		}
+	} else {
+		console.warn('[contact] Brak TURNSTILE_SECRET_KEY — weryfikacja Turnstile pominięta.');
 	}
 
 	const apiKey = env.RESEND_API_KEY;

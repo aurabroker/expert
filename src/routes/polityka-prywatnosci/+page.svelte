@@ -103,6 +103,13 @@
 		zostały włączone — narzędzia analityczne (np. Google Analytics) służące do analizy ruchu.
 		Ustawieniami plików cookies można zarządzać z poziomu przeglądarki internetowej.
 	</p>
+	<p>
+		Formularz kontaktowy jest chroniony przed spamem usługą Cloudflare Turnstile, dostarczaną przez
+		Cloudflare, Inc. W celu odróżnienia ludzi od automatów usługa przetwarza dane techniczne
+		urządzenia i przeglądarki (m.in. adres IP) — na podstawie prawnie uzasadnionego interesu
+		administratora polegającego na zabezpieczeniu Serwisu (art. 6 ust. 1 lit. f RODO). Turnstile nie
+		wykorzystuje plików cookies do śledzenia ani do celów reklamowych.
+	</p>
 
 	<h2>9. Zmiany polityki prywatności</h2>
 	<p>
