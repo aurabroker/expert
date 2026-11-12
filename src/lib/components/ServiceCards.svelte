@@ -43,7 +43,7 @@
 						<p class="mt-1 text-sm font-medium text-cyan-light">{service.subtitle}</p>
 					{/if}
 					{#if service.partner}
-						<p class="mt-2 text-xs uppercase tracking-wider text-slate-400">
+						<p class="mt-2 text-xs leading-relaxed text-slate-400">
 							we współpracy z <strong class="font-semibold text-white">{service.partner}</strong>
 						</p>
 					{/if}
