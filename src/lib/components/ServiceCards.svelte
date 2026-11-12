@@ -42,6 +42,11 @@
 						<h3 class="mt-3 text-xl font-bold text-white">{service.title}</h3>
 						<p class="mt-1 text-sm font-medium text-cyan-light">{service.subtitle}</p>
 					{/if}
+					{#if service.partner}
+						<p class="mt-2 text-xs uppercase tracking-wider text-slate-400">
+							we współpracy z <strong class="font-semibold text-white">{service.partner}</strong>
+						</p>
+					{/if}
 					<p class="mt-4 text-sm leading-relaxed text-slate-300">{service.description}</p>
 
 					<ul class="mt-6 space-y-2.5">

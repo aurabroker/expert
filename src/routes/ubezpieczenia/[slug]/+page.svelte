@@ -7,10 +7,15 @@
 	import { site } from '$data/content.js';
 
 	let { data } = $props();
-	const { service, detail, related } = data;
+	// $derived, bo przy przejściu między podstronami (np. Cyber → Ochrona Podatkowa)
+	// SvelteKit używa tego samego komponentu i podmienia tylko `data`.
+	const service = $derived(data.service);
+	const detail = $derived(data.detail);
+	const related = $derived(data.related);
+	const video = $derived(data.video);
 
-	const metaTitle = `${service.title} — ${site.name}`;
-	const metaDesc = detail?.lead ?? service.description;
+	const metaTitle = $derived(`${service.title} — ${site.name}`);
+	const metaDesc = $derived(detail?.lead ?? service.description);
 </script>
 
 <svelte:head>
@@ -26,9 +31,27 @@
 
 <main>
 	<!-- HERO -->
-	<section class="svc-hero">
-		<div class="svc-hero__facets" aria-hidden="true"><Facets tone="cyan" /></div>
-		<div class="container-x relative">
+	<section class="svc-hero" class:svc-hero--video={video}>
+		{#if video}
+			<div class="svc-hero__media" aria-hidden="true">
+				{#key video}
+					<video
+						class="svc-hero__video"
+						src={video}
+						poster="/images/hero.jpg"
+						autoplay
+						muted
+						loop
+						playsinline
+						preload="auto"
+					></video>
+				{/key}
+				<div class="svc-hero__scrim"></div>
+			</div>
+		{:else}
+			<div class="svc-hero__facets" aria-hidden="true"><Facets tone="cyan" /></div>
+		{/if}
+		<div class="container-x svc-hero__inner">
 			<nav class="svc-breadcrumb" aria-label="Ścieżka">
 				<a href="/#top">Strona główna</a>
 				<span aria-hidden="true">/</span>
@@ -45,6 +68,9 @@
 						<span class="svc-hero__tag">{service.tag}</span>
 					{/if}
 					<h1 class="svc-hero__title">{service.title}</h1>
+					{#if service.partner}
+						<p class="svc-hero__partner">we współpracy z <strong>{service.partner}</strong></p>
+					{/if}
 					<p class="svc-hero__lead">{detail?.lead ?? service.description}</p>
 					<div class="svc-hero__ctas">
 						<a href="/#kontakt" class="btn-accent">
@@ -109,7 +135,7 @@
 					<p class="eyebrow">FAQ</p>
 					<h2 class="mt-4 text-2xl font-bold text-navy sm:text-3xl">Najczęstsze pytania</h2>
 					<div class="mt-6 space-y-3">
-						{#each detail.faq as item}
+						{#each detail.faq as item (item.q)}
 							<details class="faq">
 								<summary>
 									<span>{item.q}</span>
@@ -174,6 +200,47 @@
 		background: linear-gradient(160deg, #1e3a4c 0%, #0f2438 100%);
 		padding-top: calc(var(--nav-h) + 3rem);
 		padding-bottom: 4rem;
+	}
+	.svc-hero--video {
+		min-height: clamp(460px, 64vh, 680px);
+	}
+	.svc-hero__media {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+	}
+	.svc-hero__video {
+		position: absolute;
+		inset: 0;
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+	}
+	.svc-hero__scrim {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(
+				90deg,
+				rgba(9, 23, 38, 0.92) 0%,
+				rgba(9, 23, 38, 0.74) 40%,
+				rgba(9, 23, 38, 0.4) 72%,
+				rgba(9, 23, 38, 0.2) 100%
+			),
+			linear-gradient(0deg, rgba(9, 23, 38, 0.6) 0%, transparent 45%);
+	}
+	.svc-hero__inner {
+		position: relative;
+		z-index: 1;
+	}
+	.svc-hero__partner {
+		margin-top: 0.75rem;
+		font-size: 1rem;
+		color: #cbd5e1;
+	}
+	.svc-hero__partner strong {
+		color: #ffffff;
+		font-weight: 700;
 	}
 	.svc-hero__facets {
 		position: absolute;

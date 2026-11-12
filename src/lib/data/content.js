@@ -124,7 +124,8 @@ export const heroSlides = [
 		subtitle:
 			'Pokrywamy koszty postępowań i profesjonalnej reprezentacji przed organami — bez uszczerbku dla płynności.',
 		href: '/ubezpieczenia/ochrona-podatkowa',
-		video: '/tax.mp4'
+		video: '/tax.mp4',
+		partner: 'Colonnade'
 	},
 	{
 		tag: 'BeautyPolisa',
@@ -207,6 +208,8 @@ export const services = [
 		tag: 'TAX',
 		title: 'Ochrona Podatkowa',
 		subtitle: 'Bezpieczeństwo finansów firmy',
+		// Wyświetlane jako „we współpracy z …" (karta usługi, slajd Hero, podstrona).
+		partner: 'Colonnade',
 		icon: 'tax',
 		description:
 			'Zabezpieczenie firmy na wypadek kontroli i sporów podatkowych — pokrycie kosztów doradztwa, reprezentacji i postępowań.',

@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { services, serviceDetails } from '$data/content.js';
+import { services, serviceDetails, heroSlides } from '$data/content.js';
 
 export const prerender = true;
 
@@ -16,6 +16,8 @@ export function load({ params }) {
 	return {
 		service,
 		detail: serviceDetails[params.slug] ?? null,
+		// Wideo w tle hero — to samo, co na slajdzie karuzeli dla tego ubezpieczenia.
+		video: heroSlides.find((s) => s.href === `/ubezpieczenia/${params.slug}`)?.video ?? null,
 		related: services.filter((s) => s.slug !== params.slug).slice(0, 3)
 	};
 }

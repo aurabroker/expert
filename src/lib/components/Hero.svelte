@@ -75,6 +75,9 @@
 							{slide.tag}
 						</p>
 					{/if}
+					{#if slide.partner}
+						<p class="hero__partner">we współpracy z <strong>{slide.partner}</strong></p>
+					{/if}
 					<h1 class="hero__title">{slide.title}</h1>
 					<p class="hero__subtitle">{slide.subtitle}</p>
 					<div class="mt-9 flex flex-wrap gap-4">
@@ -183,6 +186,15 @@
 
 	.hero__eyebrow {
 		color: #7fd6f7;
+	}
+	.hero__partner {
+		margin-top: 0.6rem;
+		font-size: 0.9rem;
+		color: rgba(255, 255, 255, 0.78);
+	}
+	.hero__partner strong {
+		color: #ffffff;
+		font-weight: 700;
 	}
 
 	.hero__title {
